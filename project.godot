@@ -21,6 +21,11 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="questplease"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_render/layer_1="miniature"
+2d_render/layer_2="details"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
