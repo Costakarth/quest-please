@@ -21,6 +21,10 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="questplease"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/resizable=false
+
 [layer_names]
 
 2d_render/layer_1="miniature"
