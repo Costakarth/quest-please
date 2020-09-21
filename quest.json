@@ -1,0 +1,10 @@
+{
+    "memory_chip1" : {
+      "item" : "memory_chip",
+      "quantity" : "5"
+    },
+    "cig1" : {
+      "item" : "cigarettes",
+      "quantity" : "3"
+    }
+  }
