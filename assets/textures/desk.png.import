@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pg.PNG-061b35ec5d6ce3217fca11b084a57448.stex"
+path="res://.import/desk.png-8f317c132fb9aec4ed73e7f7e97f0204.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pg.PNG"
-dest_files=[ "res://.import/pg.PNG-061b35ec5d6ce3217fca11b084a57448.stex" ]
+source_file="res://assets/textures/desk.png"
+dest_files=[ "res://.import/desk.png-8f317c132fb9aec4ed73e7f7e97f0204.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

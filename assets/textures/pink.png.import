@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green.PNG-52aa63a102be2b9771c371370a6ffa20.stex"
+path="res://.import/pink.png-b0cea383aea63ccff19553a6442e68ae.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/green.PNG"
-dest_files=[ "res://.import/green.PNG-52aa63a102be2b9771c371370a6ffa20.stex" ]
+source_file="res://assets/textures/pink.png"
+dest_files=[ "res://.import/pink.png-b0cea383aea63ccff19553a6442e68ae.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

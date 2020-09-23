@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/white.PNG-668e3c10a4a996ddf719189715dbeeee.stex"
+path="res://.import/pg.png-3e3e4d05ed786c160567bdc6684f2483.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/white.PNG"
-dest_files=[ "res://.import/white.PNG-668e3c10a4a996ddf719189715dbeeee.stex" ]
+source_file="res://assets/textures/pg.png"
+dest_files=[ "res://.import/pg.png-3e3e4d05ed786c160567bdc6684f2483.stex" ]
 
 [params]
 
@@ -20,15 +20,15 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

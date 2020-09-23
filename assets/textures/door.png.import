@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pink.PNG-7537ef2a0560d3e21f0e0dc2f934d24f.stex"
+path="res://.import/door.png-c86c154ddb68f53d0d08a089797c2254.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pink.PNG"
-dest_files=[ "res://.import/pink.PNG-7537ef2a0560d3e21f0e0dc2f934d24f.stex" ]
+source_file="res://assets/textures/door.png"
+dest_files=[ "res://.import/door.png-c86c154ddb68f53d0d08a089797c2254.stex" ]
 
 [params]
 
@@ -30,5 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
