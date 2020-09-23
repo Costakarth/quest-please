@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DusanEvenwind.png-99db600c824ac03699ed0274988ec33e.stex"
+path="res://.import/door.PNG-63654fb5f9fc7c27dd2c328b5f01564f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/DusanEvenwind.png"
-dest_files=[ "res://.import/DusanEvenwind.png-99db600c824ac03699ed0274988ec33e.stex" ]
+source_file="res://assets/door.PNG"
+dest_files=[ "res://.import/door.PNG-63654fb5f9fc7c27dd2c328b5f01564f.stex" ]
 
 [params]
 

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/fonts/dyn_font.tres" type="DynamicFont" id=1]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+margin_right = 809.0
+margin_bottom = 80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 384.0
+margin_bottom = 80.0
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Kenney"
+valign = 1

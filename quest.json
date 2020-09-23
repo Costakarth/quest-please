@@ -1,10 +1,20 @@
 {
-    "memory_chip1" : {
+  "memory_chip1" : 
+  {
+    "name" : "MOAR CHIPS",
+    "items" : [{
       "item" : "memory_chip",
       "quantity" : "5"
-    },
-    "cig1" : {
+    }],
+    "level" : 1
+  },
+  "cig1" : 
+  {
+    "name" : "TOBACCO",
+    "items" : [{
       "item" : "cigarettes",
-      "quantity" : "3"
-    }
+      "quantity" : "5"
+    }],
+    "level" : 1
   }
+}

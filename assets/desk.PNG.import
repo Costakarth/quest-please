@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Layer 4(pasted).PNG-f1a13389f6174110306a2858f29a9cb4.stex"
+path="res://.import/desk.PNG-22e397036046a71255dc4e4a1c92d00e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Layer 4(pasted).PNG"
-dest_files=[ "res://.import/Layer 4(pasted).PNG-f1a13389f6174110306a2858f29a9cb4.stex" ]
+source_file="res://assets/desk.PNG"
+dest_files=[ "res://.import/desk.PNG-22e397036046a71255dc4e4a1c92d00e.stex" ]
 
 [params]
 
