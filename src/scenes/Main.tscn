@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/BG.PNG" type="Texture" id=1]
-[ext_resource path="res://assets/pg.PNG" type="Texture" id=3]
-[ext_resource path="res://assets/desk.PNG" type="Texture" id=6]
-[ext_resource path="res://assets/door.PNG" type="Texture" id=7]
+[ext_resource path="res://assets/textures/BG.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/pg.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/desk.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/door.png" type="Texture" id=7]
 [ext_resource path="res://src/scripts/Hero.gd" type="Script" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
 
@@ -29,7 +29,7 @@ z_index = -1
 script = ExtResource( 8 )
 
 [node name="PG" type="Sprite" parent="Hero"]
-position = Vector2( 880, 80 )
+position = Vector2( 653.214, 80 )
 texture = ExtResource( 3 )
 
 [node name="Pos" type="Node2D" parent="Hero/PG"]
