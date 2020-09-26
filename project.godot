@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/scripts/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterType",
+"language": "GDScript",
+"path": "res://src/entities/character_type.gd"
+}, {
 "base": "Resource",
 "class": "Item",
 "language": "GDScript",
@@ -20,6 +30,8 @@ _global_script_classes=[ {
 "path": "res://src/entities/quest.gd"
 } ]
 _global_script_class_icons={
+"Character": "",
+"CharacterType": "",
 "Item": "",
 "Quest": ""
 }
@@ -35,6 +47,7 @@ config/icon="res://icon.png"
 [autoload]
 
 QuestLoader="*res://src/globals/quest_loader.gd"
+CharacterLoader="*res://src/globals/character_loader.gd"
 
 [display]
 

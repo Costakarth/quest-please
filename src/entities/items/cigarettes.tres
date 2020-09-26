@@ -4,7 +4,6 @@
 
 [sub_resource type="StreamTexture" id=1]
 flags = 4
-load_path = "res://.import/white.PNG-668e3c10a4a996ddf719189715dbeeee.stex"
 
 [resource]
 script = ExtResource( 1 )

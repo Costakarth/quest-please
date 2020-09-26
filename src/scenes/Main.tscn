@@ -32,7 +32,7 @@ z_index = -1
 script = ExtResource( 8 )
 
 [node name="PG" type="Sprite" parent="Hero"]
-position = Vector2( 880, 80 )
+position = Vector2( 653.214, 80 )
 texture = ExtResource( 3 )
 
 [node name="Pos" type="Node2D" parent="Hero/PG"]
