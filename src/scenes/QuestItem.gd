@@ -15,7 +15,5 @@ func _process(delta: float) -> void:
 		$BigSprite.visible = false
 		
 	
-
-
 func _on_ClickableArea_not_clicked() -> void:
 	is_clicked = false
