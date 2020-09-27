@@ -1,16 +1,14 @@
-extends Container
+extends CenterContainer
 
-onready var label = $Label
-var quest
+var item : Item
 
-signal clicked
+signal item_clicked
 
 func _ready() -> void:
-	label.text = quest.name
-
+	$TextureRect.texture = item.texture
+	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				emit_signal("clicked", quest)
-
+				emit_signal("item_clicked", item)

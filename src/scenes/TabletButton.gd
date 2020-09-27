@@ -1,16 +1,10 @@
-extends Container
-
-onready var label = $Label
-var quest
+extends Control
 
 signal clicked
-
-func _ready() -> void:
-	label.text = quest.name
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				emit_signal("clicked", quest)
+				emit_signal("clicked")
 

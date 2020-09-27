@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=1]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 610.0
+margin_bottom = 1060.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
+margin_right = 590.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 0, 200 )
+size_flags_vertical = 1
+custom_fonts/font = ExtResource( 1 )
+text = "Items"
+align = 1
+valign = 1
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_top = 210.0
+margin_right = 590.0
+margin_bottom = 210.0
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}

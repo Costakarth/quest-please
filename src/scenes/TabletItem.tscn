@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/white.png" type="Texture" id=1]
+[ext_resource path="res://src/scenes/TabletItem.gd" type="Script" id=2]
+
+[node name="TabletItem" type="CenterContainer"]
+margin_left = 33.0
+margin_right = 162.0
+margin_bottom = 141.0
+mouse_default_cursor_shape = 2
+size_flags_horizontal = 6
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 129.0
+margin_bottom = 141.0
+grow_horizontal = 2
+size_flags_horizontal = 14
+texture = ExtResource( 1 )

@@ -10,7 +10,7 @@ onready var character = preload("res://src/scenes/Character.tscn")
 
 func _ready() -> void:
 	_populate_quest_board(level)
-	generate_character()
+	#generate_character()
 
 func generate_character():
 	var generated = character.instance();
@@ -18,13 +18,9 @@ func generate_character():
 	CharacterLoader.get_node(".").add_child(generated)
 
 func _populate_quest_board(level : int):
-	var index = 0
-
 	for quest in QuestLoader.quests[level]:
 		var quest_container_instance = quest_container.instance()
 		quest_container_instance.quest = quest
 		quest_container_instance.connect("clicked", popup, "_on_quest_clicked")
 			
 		vbox.add_child(quest_container_instance)
-		vbox.get_child(index).visible = true
-		index = index + 1
