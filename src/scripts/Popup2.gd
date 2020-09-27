@@ -13,7 +13,7 @@ onready var original_position : Vector2 = $TextureRect.rect_position
 func _populate_tablet():
 	var grid_container = $TextureRect/MarginContainer/VBoxContainer/GridContainer
 	
-	for item in QuestLoader.items:
+	for item in ItemLoader.items:
 			var tablet_item = tablet_item_scene.instance()
 			tablet_item.connect("item_clicked", self, "_on_item_clicked")
 			tablet_item.item = item
@@ -32,7 +32,7 @@ func _on_Popup_popup_hide() -> void:
 	get_tree().paused = false
 	
 	
-func _on_item_clicked(item):
+func _on_item_clicked(item : Item):
 	var container = $TextureRect/MarginContainer
 	
 	for n in container.get_children():
@@ -44,8 +44,14 @@ func _on_item_clicked(item):
 	
 	var vbox_container = $TextureRect/MarginContainer/VBoxContainer
 	var name_label : Label = $TextureRect/MarginContainer/VBoxContainer/Name
+	var description : RichTextLabel = $TextureRect/MarginContainer/VBoxContainer/Description
+	var miniature : TextureRect = $TextureRect/MarginContainer/VBoxContainer/Miniature/Image
+	var detail : TextureRect = $TextureRect/MarginContainer/VBoxContainer/Detail/Image
 		
 	name_label.text = item.name
+	description.text = item.description
+	miniature.texture = item.texture
+	detail.texture = item.texture
 
 
 func _on_TabletButton_clicked() -> void:

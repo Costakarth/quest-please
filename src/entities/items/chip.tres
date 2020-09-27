@@ -6,4 +6,6 @@
 [resource]
 script = ExtResource( 1 )
 name = "chip"
+description = "Colore: sasdas
+Ciao: POPO"
 texture = ExtResource( 2 )

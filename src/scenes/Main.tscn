@@ -4,13 +4,13 @@
 [ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/pg.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Kenney Rocket Square.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/scenes/Popup.gd" type="Script" id=5]
+[ext_resource path="res://src/scripts/Popup.gd" type="Script" id=5]
 [ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=6]
 [ext_resource path="res://src/scripts/Hero.gd" type="Script" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://assets/textures/QP_06_Counter.png" type="Texture" id=10]
-[ext_resource path="res://src/scenes/TabletButton.gd" type="Script" id=11]
-[ext_resource path="res://src/scenes/Popup2.gd" type="Script" id=12]
+[ext_resource path="res://src/scripts/TabletButton.gd" type="Script" id=11]
+[ext_resource path="res://src/scripts/Popup2.gd" type="Script" id=12]
 [ext_resource path="res://assets/textures/QP_02_Tablet.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=1]
@@ -52,7 +52,7 @@ texture = ExtResource( 3 )
 [node name="Pos" type="Node2D" parent="Hero/PG"]
 position = Vector2( -496, 168 )
 
-[node name="Popup" type="Popup" parent="."]
+[node name="MonitorPopup" type="Popup" parent="."]
 pause_mode = 2
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -61,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Popup"]
+[node name="Background" type="ColorRect" parent="MonitorPopup"]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,7 +71,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Popup"]
+[node name="Texture" type="TextureRect" parent="MonitorPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -88,7 +88,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup/TextureRect"]
+[node name="Margin" type="MarginContainer" parent="MonitorPopup/Texture"]
 anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
@@ -106,7 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup/TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MonitorPopup/Texture/Margin"]
 margin_left = 50.0
 margin_top = 10.0
 margin_right = 1187.0
@@ -116,7 +116,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
+[node name="Name" type="Label" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_right = 1138.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
@@ -126,7 +126,7 @@ text = "Quest 1"
 align = 1
 valign = 1
 
-[node name="Description" type="RichTextLabel" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 210.0
 margin_right = 1138.0
 margin_bottom = 610.0
@@ -136,18 +136,17 @@ meta_underlined = false
 text = "sdfsfsdfsdsdadasdasdsa
 asdasdawqeqwewqeqwewqewqeqweqwwwewr asdasdasdadzxzczczxczxczxcd"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
+[node name="Items" type="HBoxContainer" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 620.0
 margin_right = 1138.0
 margin_bottom = 820.0
 rect_min_size = Vector2( 0, 200 )
 alignment = 1
 
-[node name="Tween" type="Tween" parent="Popup"]
+[node name="Tween" type="Tween" parent="MonitorPopup"]
 
 [node name="Popup2" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 12 )
@@ -188,10 +187,10 @@ anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
 anchor_bottom = 0.81
-margin_left = 70.28
+margin_left = 72.28
 margin_top = -198.02
 margin_right = -63.28
-margin_bottom = 59.02
+margin_bottom = 44.02
 rect_rotation = -1.39665
 rect_pivot_offset = Vector2( 328, 544 )
 custom_constants/margin_right = 20
@@ -204,7 +203,7 @@ __meta__ = {
 
 [node name="Tween" type="Tween" parent="Popup2"]
 
-[node name="PanelContainer" type="Control" parent="."]
+[node name="Monitor" type="Control" parent="."]
 margin_left = 1004.0
 margin_top = 254.0
 margin_right = 1848.0
@@ -216,22 +215,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="Margin" type="MarginContainer" parent="Monitor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -44.0
-margin_bottom = -4.0
+margin_right = -39.0
 rect_scale = Vector2( 1.05584, 1.03276 )
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
-margin_left = 50.0
-margin_right = 750.0
-margin_bottom = 204.0
+[node name="QuestGrid" type="GridContainer" parent="Monitor/Margin"]
+margin_right = 805.0
+margin_bottom = 208.0
 columns = 2
 
 [node name="TabletButton" type="Control" parent="."]
@@ -244,6 +239,6 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="popup_hide" from="Popup" to="Popup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="MonitorPopup" to="MonitorPopup" method="_on_Popup_popup_hide"]
 [connection signal="popup_hide" from="Popup2" to="Popup2" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="TabletButton" to="Popup2" method="_on_TabletButton_clicked"]

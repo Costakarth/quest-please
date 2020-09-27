@@ -2,7 +2,7 @@ extends Node2D
 
 export(int) var level = 1
 
-onready var vbox = $PanelContainer/MarginContainer/VBoxContainer
+onready var quest_grid : GridContainer = $Monitor/Margin/QuestGrid
 onready var popup = $Popup
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
 onready var quest_image = preload("res://src/scenes/TextureRect.tscn")
@@ -23,4 +23,4 @@ func _populate_quest_board(level : int):
 		quest_container_instance.quest = quest
 		quest_container_instance.connect("clicked", popup, "_on_quest_clicked")
 			
-		vbox.add_child(quest_container_instance)
+		quest_grid.add_child(quest_container_instance)

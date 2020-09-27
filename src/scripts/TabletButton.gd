@@ -7,4 +7,3 @@ func _gui_input(event: InputEvent) -> void:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				emit_signal("clicked")
-
