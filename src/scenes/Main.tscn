@@ -1,19 +1,64 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://assets/textures/QP_01_Background_1_bis.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/textures/pg.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/QP_C_Driver_01.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Kenney Rocket Square.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://src/scenes/Popup.gd" type="Script" id=5]
+[ext_resource path="res://src/scripts/MonitorPopup.gd" type="Script" id=5]
 [ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/QP_02_Tablet_little.png" type="Texture" id=7]
 [ext_resource path="res://src/scripts/Hero.gd" type="Script" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://assets/textures/QP_06_Counter.png" type="Texture" id=10]
-[ext_resource path="res://src/scenes/TabletButton.gd" type="Script" id=11]
-[ext_resource path="res://src/scenes/Popup2.gd" type="Script" id=12]
+[ext_resource path="res://src/scripts/TabletButton.gd" type="Script" id=11]
+[ext_resource path="res://src/scripts/TabletPopup.gd" type="Script" id=12]
 [ext_resource path="res://assets/textures/QP_02_Tablet.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/QP_03_Sheet_little.png" type="Texture" id=14]
+[ext_resource path="res://src/scripts/TabletSprite.gd" type="Script" id=16]
+[ext_resource path="res://src/scripts/SheetButton.gd" type="Script" id=17]
+[ext_resource path="res://src/scripts/SheetSprite.gd" type="Script" id=18]
+[ext_resource path="res://src/scripts/PopupManager.gd" type="Script" id=19]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float outLineSize = 0.02;
+uniform float alpha  = 0;
+
+void fragment()
+{
+	vec4 outLineColor = vec4(1.0, 1.0, 1.0, alpha);
+    vec4 tcol = texture(TEXTURE, UV);
+
+    if (tcol.a == 0.0)
+    {
+        if (texture(TEXTURE, UV + vec2(0.0,          outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(0.0,         -outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, 0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, -outLineSize)).a != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  -outLineSize)).a != 0.0) 
+            tcol = outLineColor;
+    }
+
+
+    COLOR = vec4(tcol.rgb, tcol.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="DynamicFont" id=4]
 size = 30
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -23,9 +68,9 @@ font_data = ExtResource( 4 )
 [node name="Main" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 9 )
-__meta__ = {
-"_edit_vertical_guides_": [ 0.0, 992.0 ]
-}
+
+[node name="PopupManager" type="Node" parent="."]
+script = ExtResource( 19 )
 
 [node name="Desk" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
@@ -39,20 +84,56 @@ z_index = -1
 texture = ExtResource( 1 )
 centered = false
 
+[node name="Tablet" type="Node2D" parent="."]
+
+[node name="TabletSprite" type="Sprite" parent="Tablet"]
+material = SubResource( 2 )
+position = Vector2( 569, 928 )
+texture = ExtResource( 7 )
+script = ExtResource( 16 )
+
+[node name="TabletButton" type="Control" parent="Tablet"]
+margin_left = 489.0
+margin_top = 816.0
+margin_right = 617.0
+margin_bottom = 984.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sheet" type="Node2D" parent="."]
+
+[node name="SheetSprite" type="Sprite" parent="Sheet"]
+material = SubResource( 3 )
+position = Vector2( 849, 904 )
+texture = ExtResource( 14 )
+script = ExtResource( 18 )
+
+[node name="SheetButton" type="Control" parent="Sheet"]
+margin_left = 793.0
+margin_top = 832.0
+margin_right = 905.0
+margin_bottom = 992.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Hero" type="Node2D" parent="."]
 position = Vector2( 193, 528 )
 z_index = -1
 script = ExtResource( 8 )
 
 [node name="PG" type="Sprite" parent="Hero"]
-visible = false
-position = Vector2( 653.214, 80 )
+position = Vector2( 744, -216 )
 texture = ExtResource( 3 )
 
 [node name="Pos" type="Node2D" parent="Hero/PG"]
+visible = false
 position = Vector2( -496, 168 )
 
-[node name="Popup" type="Popup" parent="."]
+[node name="MonitorPopup" type="Popup" parent="."]
 pause_mode = 2
 margin_right = 1920.0
 margin_bottom = 1080.0
@@ -61,7 +142,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Popup"]
+[node name="Background" type="ColorRect" parent="MonitorPopup"]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -71,7 +152,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Popup"]
+[node name="Texture" type="TextureRect" parent="MonitorPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -88,7 +169,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup/TextureRect"]
+[node name="Margin" type="MarginContainer" parent="MonitorPopup/Texture"]
 anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
@@ -106,7 +187,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup/TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MonitorPopup/Texture/Margin"]
 margin_left = 50.0
 margin_top = 10.0
 margin_right = 1187.0
@@ -116,8 +197,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
-margin_right = 1138.0
+[node name="Name" type="Label" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
+margin_right = 1137.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_vertical = 1
@@ -126,28 +207,27 @@ text = "Quest 1"
 align = 1
 valign = 1
 
-[node name="Description" type="RichTextLabel" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 210.0
-margin_right = 1138.0
+margin_right = 1137.0
 margin_bottom = 610.0
 rect_min_size = Vector2( 0, 400 )
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 4 )
 meta_underlined = false
 text = "sdfsfsdfsdsdadasdasdsa
 asdasdawqeqwewqeqwewqewqeqweqwwwewr asdasdasdadzxzczczxczxczxcd"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
+[node name="Items" type="HBoxContainer" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 620.0
-margin_right = 1138.0
+margin_right = 1137.0
 margin_bottom = 820.0
 rect_min_size = Vector2( 0, 200 )
 alignment = 1
 
-[node name="Tween" type="Tween" parent="Popup"]
+[node name="Tween" type="Tween" parent="MonitorPopup"]
 
-[node name="Popup2" type="Popup" parent="."]
+[node name="TabletPopup" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 12 )
@@ -155,7 +235,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="Popup2"]
+[node name="Background" type="ColorRect" parent="TabletPopup"]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -165,7 +245,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Popup2"]
+[node name="TextureRect" type="TextureRect" parent="TabletPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -183,15 +263,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="Popup2/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="TabletPopup/TextureRect"]
 anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
 anchor_bottom = 0.81
-margin_left = 70.28
+margin_left = 72.28
 margin_top = -198.02
 margin_right = -63.28
-margin_bottom = 59.02
+margin_bottom = 44.02
 rect_rotation = -1.39665
 rect_pivot_offset = Vector2( 328, 544 )
 custom_constants/margin_right = 20
@@ -202,9 +282,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="Popup2"]
+[node name="Tween" type="Tween" parent="TabletPopup"]
 
-[node name="PanelContainer" type="Control" parent="."]
+[node name="Monitor" type="Control" parent="."]
 margin_left = 1004.0
 margin_top = 254.0
 margin_right = 1848.0
@@ -216,34 +296,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="Margin" type="MarginContainer" parent="Monitor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -44.0
-margin_bottom = -4.0
+margin_right = -39.0
 rect_scale = Vector2( 1.05584, 1.03276 )
-custom_constants/margin_right = 50
-custom_constants/margin_left = 50
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
-margin_left = 50.0
-margin_right = 750.0
-margin_bottom = 204.0
+[node name="QuestGrid" type="GridContainer" parent="Monitor/Margin"]
+margin_right = 805.0
+margin_bottom = 208.0
 columns = 2
-
-[node name="TabletButton" type="Control" parent="."]
-margin_left = 489.0
-margin_top = 832.0
-margin_right = 609.0
-margin_bottom = 960.0
-mouse_default_cursor_shape = 2
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-[connection signal="popup_hide" from="Popup" to="Popup" method="_on_Popup_popup_hide"]
-[connection signal="popup_hide" from="Popup2" to="Popup2" method="_on_Popup_popup_hide"]
-[connection signal="clicked" from="TabletButton" to="Popup2" method="_on_TabletButton_clicked"]
+[connection signal="quest_close" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_close"]
+[connection signal="quest_open" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="tablet_close" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_close"]
+[connection signal="tablet_open" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
+[connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]
+[connection signal="mouse_exited" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_exited"]
+[connection signal="clicked" from="Sheet/SheetButton" to="PopupManager" method="_on_SheetButton_clicked"]
+[connection signal="mouse_entered" from="Sheet/SheetButton" to="Sheet/SheetSprite" method="_on_SheetButton_mouse_entered"]
+[connection signal="mouse_exited" from="Sheet/SheetButton" to="Sheet/SheetSprite" method="_on_SheetButton_mouse_exited"]
+[connection signal="popup_hide" from="MonitorPopup" to="MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="TabletPopup" to="TabletPopup" method="_on_Popup_popup_hide"]

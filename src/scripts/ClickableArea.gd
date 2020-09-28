@@ -11,7 +11,6 @@ func _input_event(_viewport, event, _shape_idx):
 				emit_signal("clicked")
 			else:
 				emit_signal("not_clicked")
-	
 
 
 func _on_ClickableArea_mouse_exited() -> void:

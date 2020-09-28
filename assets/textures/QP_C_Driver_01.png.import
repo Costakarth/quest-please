@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/BG.png-28bb2638e267940ce3f1a27e246c5833.stex"
+path="res://.import/QP_C_Driver_01.png-2f8ef7c22b6053a17bdc16e849cb5457.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/BG.png"
-dest_files=[ "res://.import/BG.png-28bb2638e267940ce3f1a27e246c5833.stex" ]
+source_file="res://assets/textures/QP_C_Driver_01.png"
+dest_files=[ "res://.import/QP_C_Driver_01.png-2f8ef7c22b6053a17bdc16e849cb5457.stex" ]
 
 [params]
 
@@ -24,7 +24,7 @@ flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
-process/fix_alpha_border=true
+process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

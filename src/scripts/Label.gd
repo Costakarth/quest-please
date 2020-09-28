@@ -1,8 +1,6 @@
 extends Label
 
 
-
-
 func _on_Label_mouse_entered() -> void:
 	self.modulate = Color.red
 
