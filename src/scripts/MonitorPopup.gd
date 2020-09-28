@@ -2,25 +2,27 @@ extends Popup
 
 const Util = preload("res://src/scripts/commons/util.gd")
 
+onready var monitor_item = preload("res://src/scenes/MonitorItem.tscn")
+
 onready var quest_name : Label = $Texture/Margin/VBoxContainer/Name
 onready var quest_description: RichTextLabel = $Texture/Margin/VBoxContainer/Description
 onready var quest_items : HBoxContainer = $Texture/Margin/VBoxContainer/Items
 onready var tablet : TextureRect = $Texture
+onready var popup_manager = get_node("../PopupManager")
 
-onready var original_position : Vector2 = $TextureRect.rect_position
+onready var original_position : Vector2 = tablet.rect_position
 
-func _on_quest_clicked(quest):
+func _quest_clicked(quest):
 	quest_name.text = quest.name
 	quest_description.text = quest.description
 	
 	Util.delete_children_from_node(quest_items)
 	
 	for item in quest.items_required:
-			var textureRect : = TextureRect.new()
-			textureRect.texture = item.texture
-			var centerContainer : = CenterContainer.new()
-			centerContainer.add_child(textureRect)
-			quest_items.add_child(centerContainer)
+			var monitor_item_instance = monitor_item.instance()
+			monitor_item_instance.item = item
+			monitor_item_instance.connect("clicked", popup_manager, "_on_item_clicked")
+			quest_items.add_child(monitor_item_instance)
 	
 	popup()
 	
@@ -29,9 +31,13 @@ func _on_quest_clicked(quest):
 
 
 func _on_Popup_popup_hide() -> void:
-	$TextureRect.rect_position = original_position
+	tablet.rect_position = original_position
 	get_tree().paused = false
 
 
-func _on_TabletButton_clicked() -> void:
-	pass # Replace with function body.
+func _on_PopupManager_quest_open(quest) -> void:
+	_quest_clicked(quest)
+
+
+func _on_PopupManager_quest_close() -> void:
+	hide()

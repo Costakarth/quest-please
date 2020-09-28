@@ -1,5 +1,7 @@
 extends Popup
 
+const Util = preload("res://src/scripts/commons/util.gd")
+
 onready var quest_name : Label = $TextureRect/MarginContainer/VBoxContainer/Name
 onready var quest_description: RichTextLabel = $TextureRect/MarginContainer/VBoxContainer/Description
 
@@ -14,20 +16,18 @@ func _populate_tablet():
 	var grid_container = $TextureRect/MarginContainer/VBoxContainer/GridContainer
 	
 	for item in ItemLoader.items:
-			var tablet_item = tablet_item_scene.instance()
-			tablet_item.connect("item_clicked", self, "_on_item_clicked")
-			tablet_item.item = item
-			grid_container.add_child(tablet_item)
+		var tablet_item = tablet_item_scene.instance()
+		tablet_item.connect("item_clicked", self, "_on_item_clicked")
+		tablet_item.item = item
+		grid_container.add_child(tablet_item)
 
 
 func _on_Popup_popup_hide() -> void:
 	var grid_container = $TextureRect/MarginContainer
 	
 	$TextureRect.rect_position = original_position
-	
-	for n in grid_container.get_children():
-		grid_container.remove_child(n)
-		n.queue_free()
+
+	Util.delete_children_from_node(grid_container)
 	
 	get_tree().paused = false
 	
@@ -35,9 +35,7 @@ func _on_Popup_popup_hide() -> void:
 func _on_item_clicked(item : Item):
 	var container = $TextureRect/MarginContainer
 	
-	for n in container.get_children():
-		container.remove_child(n)
-		n.queue_free()
+	Util.delete_children_from_node(container)
 		
 	var details_mode = item_details_mode.instance()
 	$TextureRect/MarginContainer.add_child(details_mode)
@@ -53,12 +51,23 @@ func _on_item_clicked(item : Item):
 	miniature.texture = item.texture
 	detail.texture = item.texture
 
-
-func _on_TabletButton_clicked() -> void:
+func _on_PopupManager_tablet_open() -> void:
 	var item_mode = item_list_mode.instance()
 	$TextureRect/MarginContainer.add_child(item_mode)
 	
 	_populate_tablet()
+	popup()
+	
+	$Tween.interpolate_property(tablet, "rect_position:y", tablet.rect_position.y, 0, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.start()
+
+
+func _on_PopupManager_tablet_close() -> void:
+	self.hide()
+
+
+func _on_PopupManager_tablet_open_on_item(item) -> void:
+	_on_item_clicked(item)
 	popup()
 	
 	$Tween.interpolate_property(tablet, "rect_position:y", tablet.rect_position.y, 0, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
