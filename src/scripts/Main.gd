@@ -6,16 +6,26 @@ onready var vbox = $PanelContainer/MarginContainer/VBoxContainer
 onready var popup = $Popup
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
 onready var quest_image = preload("res://src/scenes/TextureRect.tscn")
-onready var character = preload("res://src/scenes/Character.tscn")
+onready var CharacterManager = $CharacterManager;
 
 func _ready() -> void:
 	_populate_quest_board(level)
+	CharacterManager.initialize($Waypoints/DoorWaypoint.position, $Waypoints/FrontDeskWaypoint.position)
 	#generate_character()
 
-func generate_character():
-	var generated = character.instance();
-	generated.set_character(CharacterLoader.get_character_by_class(CharacterType.Type.NetRunner))
-	CharacterLoader.get_node(".").add_child(generated)
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_F1:
+			CharacterManager.create_character();
+		if event.scancode == KEY_F2:
+			CharacterManager.get_child(0).showCharacter();
+	"""if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_A:
+			character.showCharacter();
+		elif event.scancode == KEY_B:
+			character.hideCharacter();"""
+	pass
+
 
 func _populate_quest_board(level : int):
 	for quest in QuestLoader.quests[level]:

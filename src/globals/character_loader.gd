@@ -9,7 +9,10 @@ func _init() -> void:
 	_characters = _load_characters(_load_path);
 	_characters_by_type = _generate_by_type();
 	pass
-	
+
+func get_character_type() -> Character:
+	return _characters[randi() % _characters.size()];
+
 func get_character_by_class(classType) -> Character:
 	if not _characters_by_type.has(classType):
 		return null

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/scenes/TabletButton.gd" type="Script" id=11]
 [ext_resource path="res://src/scenes/Popup2.gd" type="Script" id=12]
 [ext_resource path="res://assets/textures/QP_02_Tablet.png" type="Texture" id=13]
+[ext_resource path="res://src/scripts/CharacterManager.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -117,7 +118,7 @@ __meta__ = {
 }
 
 [node name="Name" type="Label" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
-margin_right = 1138.0
+margin_right = 1137.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 size_flags_vertical = 1
@@ -128,7 +129,7 @@ valign = 1
 
 [node name="Description" type="RichTextLabel" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
 margin_top = 210.0
-margin_right = 1138.0
+margin_right = 1137.0
 margin_bottom = 610.0
 rect_min_size = Vector2( 0, 400 )
 custom_fonts/normal_font = SubResource( 1 )
@@ -138,7 +139,7 @@ asdasdawqeqwewqeqwewqewqeqweqwwwewr asdasdasdadzxzczczxczxczxcd"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup/TextureRect/MarginContainer/VBoxContainer"]
 margin_top = 620.0
-margin_right = 1138.0
+margin_right = 1137.0
 margin_bottom = 820.0
 rect_min_size = Vector2( 0, 200 )
 alignment = 1
@@ -147,7 +148,6 @@ alignment = 1
 
 [node name="Popup2" type="Popup" parent="."]
 pause_mode = 2
-visible = true
 margin_right = 1920.0
 margin_bottom = 1080.0
 script = ExtResource( 12 )
@@ -188,9 +188,9 @@ anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
 anchor_bottom = 0.81
-margin_left = 70.28
+margin_left = 75.6244
 margin_top = -198.02
-margin_right = -63.28
+margin_right = -57.9356
 margin_bottom = 59.02
 rect_rotation = -1.39665
 rect_pivot_offset = Vector2( 328, 544 )
@@ -244,6 +244,17 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Waypoints" type="Node" parent="."]
+
+[node name="FrontDeskWaypoint" type="Position2D" parent="Waypoints"]
+position = Vector2( 963.186, 597.424 )
+
+[node name="DoorWaypoint" type="Position2D" parent="Waypoints"]
+position = Vector2( 546.761, 630.643 )
+
+[node name="CharacterManager" type="Node" parent="."]
+script = ExtResource( 14 )
 [connection signal="popup_hide" from="Popup" to="Popup" method="_on_Popup_popup_hide"]
 [connection signal="popup_hide" from="Popup2" to="Popup2" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="TabletButton" to="Popup2" method="_on_TabletButton_clicked"]
