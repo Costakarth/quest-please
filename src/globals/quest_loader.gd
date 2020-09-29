@@ -6,13 +6,15 @@ var quest_path = "res://src/entities/quests/"
 
 var quests := {}
 
+func _ready() -> void:
+	randomize()
+
 func _init() -> void:
 	var quests_list = Util.load_resources_from_directory(quest_path)
 	_elaborate_quests(quests_list)
 	
 	
 func choose_quest(level : int) -> Quest:
-	randomize()
 	var rand_index : int = randi() % quests[level].size()
 	
 	return quests[level][rand_index]

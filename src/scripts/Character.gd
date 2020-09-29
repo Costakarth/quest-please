@@ -6,22 +6,24 @@ var _name: String = "";
 
 var _doorWaypoint: Vector2
 var _deskWaypoint: Vector2
+var _underWaypoint: Vector2
 
 var quest : Quest
 
 signal end_transition
 
-func initialize(completeName: String, doorWay: Vector2, deskWay: Vector2):
+func initialize(completeName: String, doorWay: Vector2, deskWay: Vector2, underWay: Vector2):
 	self._name = completeName;
 	self._doorWaypoint = doorWay
 	self._deskWaypoint = deskWay
+	self._underWaypoint = underWay
 	
 	$Name.text = completeName
-	pass
+
 
 func _ready():
-	self.visible = false;
-	pass
+	self.visible = false
+	randomize()
 
 func show_character() -> bool:
 	if self.visible:
@@ -54,6 +56,22 @@ func hideCharacter() -> bool:
 	
 	self.queue_free()
 	return true
+	
+
+func drop_character() -> bool:
+	if not self.visible:
+		return false;
+
+	yield(get_tree().create_timer(0.5), "timeout")
+	scale = Vector2(.65, .65)
+	
+	position = _underWaypoint;
+
+	yield(get_tree().create_timer(0.5), "timeout");
+	
+	self.queue_free()
+	return true
+
 
 func set_character(newType) -> bool:
 	if _type == newType:
@@ -71,4 +89,9 @@ func get_name() -> String:
 	
 func pick_quest(level : int) -> Quest:
 	quest = QuestLoader.choose_quest(level)
+	
+	if randi() % 2:
+		print("p")
+		quest.has_error = true
+	
 	return quest

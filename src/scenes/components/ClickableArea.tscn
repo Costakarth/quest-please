@@ -3,7 +3,7 @@
 [ext_resource path="res://src/scripts/ClickableArea.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8.98503, 5.18555 )
+extents = Vector2( 3.85073, 3.24096 )
 
 [node name="ClickableArea" type="Area2D"]
 z_index = 1

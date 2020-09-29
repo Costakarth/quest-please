@@ -14,8 +14,11 @@ onready var itemContainer = $ItemContainer
 var character : Character = null
 
 func _ready() -> void:
+	randomize()
 	_populate_quest_board(level)
-	CharacterManager.initialize($Waypoints/DoorWaypoint.position, $Waypoints/FrontDeskWaypoint.position)
+	CharacterManager.initialize($Waypoints/DoorWaypoint.position, 
+		$Waypoints/FrontDeskWaypoint.position,
+		$Waypoints/UnderDeskWaypoint.position)
 
 
 func _input(event):
@@ -34,16 +37,25 @@ func _input(event):
 				
 
 func _on_end_transition():
-	var quest = character.quest
+	var quest : Quest = character.quest
 				
 	var items = quest.items_required
+	 
+	var error_index
+	
+	if quest.has_error:
+		error_index = randi() % items.size() +1
 
 	var index = 1
 	for item in items:
 		var quest_item_instance = quest_item.instance()
 		quest_item_instance.visible = false
 		quest_item_instance.get_child(0).texture = item.texture
-		quest_item_instance.get_child(1).texture = item.texture_detailed
+		if index == error_index:
+			quest_item_instance.get_child(1).texture = item.texture_worn
+		else:
+			quest_item_instance.get_child(1).texture = item.texture_detailed
+		
 		itemContainer.add_child(quest_item_instance)
 		var position_name : String = "ItemPosition/ItemWaypoint" + String(index)
 		quest_item_instance.position = get_node(position_name).position
@@ -74,6 +86,8 @@ func _on_ButtonControl_clicked() -> void:
 
 
 func _on_AcceptButtonControl_clicked() -> void:
+	if (character.quest.has_error):
+		print("ERRORE")
 	Util.delete_children_from_node(itemContainer)
 	character.hideCharacter()
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -83,5 +97,9 @@ func _on_AcceptButtonControl_clicked() -> void:
 	
 
 func _on_RejectButtonControl_clicked() -> void:
+	if !character.quest.has_error:
+		print("ERRORE")
 	Util.delete_children_from_node(itemContainer)
+	character.drop_character()
+	yield(get_tree().create_timer(0.5), "timeout")
 	character.queue_free()

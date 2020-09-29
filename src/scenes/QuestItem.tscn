@@ -1,18 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/scenes/components/ClickableArea.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scripts/QuestItem.gd" type="Script" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
 
 [node name="Item" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-z_index = 1
+z_index = -1
 
 [node name="BigSprite" type="Sprite" parent="."]
 visible = false
+light_mask = -2147483646
+material = SubResource( 1 )
 scale = Vector2( 2, 2 )
-z_index = 1
 
 [node name="ClickableArea" parent="." instance=ExtResource( 1 )]
 [connection signal="clicked" from="ClickableArea" to="." method="_on_ClickableArea_clicked"]
