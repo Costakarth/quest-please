@@ -28,11 +28,17 @@ func _quest_clicked(quest):
 	
 	$Tween.interpolate_property(tablet, "rect_position:x", tablet.rect_position.x, 377, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
+	
+	
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_ESCAPE:
+			hide()
+			emit_signal("popup_hide")
 
 
 func _on_Popup_popup_hide() -> void:
 	tablet.rect_position = original_position
-	get_tree().paused = false
 
 
 func _on_PopupManager_quest_open(quest) -> void:

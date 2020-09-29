@@ -49,9 +49,8 @@ margin_right = 1312.0
 margin_bottom = 840.0
 
 [node name="Text" type="Label" parent="TextureRect/MarginContainer/VBoxContainer"]
-margin_top = -1.0
 margin_right = 1312.0
-margin_bottom = 749.0
+margin_bottom = 750.0
 rect_min_size = Vector2( 0, 750 )
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )

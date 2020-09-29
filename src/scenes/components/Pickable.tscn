@@ -11,6 +11,7 @@ script/source = "extends Area2D
 
 signal clicked
 
+var initial_position = Vector2.ZERO
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton:
@@ -27,6 +28,8 @@ func _input(event):
 func _physics_process(delta: float) -> void:
 	if get_parent().drag_enabled:
 		get_node(\"../../\").position = get_global_mouse_position()
+	else:
+		get_node(\"../../\").position = initial_position
 "
 
 [sub_resource type="CapsuleShape2D" id=3]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
@@ -7,9 +7,9 @@
 [ext_resource path="res://src/scripts/MonitorPopup.gd" type="Script" id=5]
 [ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/QP_02_Tablet_little.png" type="Texture" id=7]
-[ext_resource path="res://assets/textures/circle.png" type="Texture" id=8]
+[ext_resource path="res://assets/shaders/crt_material.tres" type="Material" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
-[ext_resource path="res://assets/textures/QP_06_Counter.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/Desk.PNG" type="Texture" id=10]
 [ext_resource path="res://src/scripts/TabletButton.gd" type="Script" id=11]
 [ext_resource path="res://src/scripts/TabletPopup.gd" type="Script" id=12]
 [ext_resource path="res://assets/textures/QP_02_Tablet.png" type="Texture" id=13]
@@ -24,8 +24,11 @@
 [ext_resource path="res://assets/shaders/outline_shader.tres" type="Material" id=22]
 [ext_resource path="res://assets/textures/QP_07_Button_square_red.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/QP_07_Button_square_green.png" type="Texture" id=24]
-[ext_resource path="res://src/scenes/components/Pickable.tscn" type="PackedScene" id=25]
-[ext_resource path="res://assets/textures/border.png" type="Texture" id=26]
+[ext_resource path="res://src/scenes/Scanner.gd" type="Script" id=25]
+[ext_resource path="res://assets/textures/QP_03_Sheet.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/Monitor.PNG" type="Texture" id=27]
+[ext_resource path="res://assets/textures/xray.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/square.png" type="Texture" id=29]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -166,9 +169,6 @@ func _on_ButtonControl_mouse_exited() -> void:
 	selected = false
 "
 
-[sub_resource type="CircleShape2D" id=11]
-radius = 32.2491
-
 [node name="Main" type="Node2D"]
 position = Vector2( -1, 0 )
 script = ExtResource( 9 )
@@ -179,19 +179,19 @@ script = ExtResource( 19 )
 [node name="ItemPosition" type="Node" parent="."]
 
 [node name="ItemWaypoint1" type="Position2D" parent="ItemPosition"]
-position = Vector2( 602, 726 )
+position = Vector2( 386, 726 )
 
 [node name="ItemWaypoint2" type="Position2D" parent="ItemPosition"]
-position = Vector2( 754, 726 )
+position = Vector2( 538, 726 )
 
 [node name="ItemWaypoint3" type="Position2D" parent="ItemPosition"]
-position = Vector2( 930, 718 )
+position = Vector2( 714, 718 )
 
 [node name="ItemWaypoint4" type="Position2D" parent="ItemPosition"]
-position = Vector2( 1114, 718 )
+position = Vector2( 898, 718 )
 
 [node name="ItemWaypoint5" type="Position2D" parent="ItemPosition"]
-position = Vector2( 1298, 710 )
+position = Vector2( 1082, 710 )
 
 [node name="MonitorPopup" type="Popup" parent="."]
 pause_mode = 2
@@ -347,10 +347,19 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="TabletPopup"]
 
 [node name="Desk" type="Sprite" parent="."]
-position = Vector2( 960, 540 )
+position = Vector2( 752, 540 )
 scale = Vector2( 1.00026, 0.773088 )
 z_index = -1
 texture = ExtResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MonitorSprite" type="Sprite" parent="."]
+position = Vector2( 1113.25, 435.615 )
+scale = Vector2( 1.00026, 0.773088 )
+z_index = -1
+texture = ExtResource( 27 )
 
 [node name="BG" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
@@ -358,6 +367,9 @@ scale = Vector2( 1.00052, 0.773639 )
 z_index = -2
 texture = ExtResource( 1 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="BGDoorClose" type="Sprite" parent="."]
 position = Vector2( 1, 0 )
@@ -365,19 +377,22 @@ scale = Vector2( 1.00052, 0.773639 )
 z_index = -2
 texture = ExtResource( 3 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Tablet" type="Node2D" parent="."]
 
 [node name="TabletSprite" type="Sprite" parent="Tablet"]
 material = SubResource( 3 )
-position = Vector2( 569, 928 )
+position = Vector2( 353, 928 )
 texture = ExtResource( 7 )
 script = ExtResource( 16 )
 
 [node name="TabletButton" type="Control" parent="Tablet"]
-margin_left = 489.0
+margin_left = 273.0
 margin_top = 816.0
-margin_right = 617.0
+margin_right = 401.0
 margin_bottom = 984.0
 script = ExtResource( 11 )
 __meta__ = {
@@ -388,14 +403,14 @@ __meta__ = {
 
 [node name="SheetSprite" type="Sprite" parent="Sheet"]
 material = SubResource( 4 )
-position = Vector2( 849, 904 )
+position = Vector2( 633, 904 )
 texture = ExtResource( 15 )
 script = ExtResource( 18 )
 
 [node name="SheetButton" type="Control" parent="Sheet"]
-margin_left = 793.0
+margin_left = 577.0
 margin_top = 832.0
-margin_right = 905.0
+margin_right = 689.0
 margin_bottom = 992.0
 script = ExtResource( 17 )
 __meta__ = {
@@ -403,10 +418,10 @@ __meta__ = {
 }
 
 [node name="Monitor" type="Control" parent="."]
-margin_left = 1004.0
-margin_top = 254.0
-margin_right = 1848.0
-margin_bottom = 462.0
+margin_left = 1157.25
+margin_top = 149.615
+margin_right = 2001.25
+margin_bottom = 357.615
 rect_rotation = -1.28937
 rect_scale = Vector2( 0.41925, 0.785626 )
 rect_pivot_offset = Vector2( 419.797, 81.4637 )
@@ -431,7 +446,7 @@ columns = 2
 [node name="Waypoints" type="Node" parent="."]
 
 [node name="FrontDeskWaypoint" type="Position2D" parent="Waypoints"]
-position = Vector2( 963.186, 676 )
+position = Vector2( 872, 672 )
 
 [node name="UnderDeskWaypoint" type="Position2D" parent="Waypoints"]
 position = Vector2( 963.186, 1304 )
@@ -445,7 +460,7 @@ script = ExtResource( 14 )
 [node name="ItemContainer" type="Node" parent="."]
 
 [node name="ButtonDoor" type="Node2D" parent="."]
-position = Vector2( 377, 856 )
+position = Vector2( 161, 856 )
 
 [node name="Sprite" type="Sprite" parent="ButtonDoor"]
 material = SubResource( 6 )
@@ -463,7 +478,7 @@ __meta__ = {
 }
 
 [node name="AcceptButton" type="Node2D" parent="."]
-position = Vector2( 1513, 824 )
+position = Vector2( 1297, 824 )
 
 [node name="Sprite" type="Sprite" parent="AcceptButton"]
 material = SubResource( 9 )
@@ -481,7 +496,7 @@ __meta__ = {
 }
 
 [node name="RejectButton" type="Node2D" parent="."]
-position = Vector2( 1517, 900 )
+position = Vector2( 1301, 900 )
 
 [node name="Sprite" type="Sprite" parent="RejectButton"]
 material = ExtResource( 22 )
@@ -498,30 +513,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Light2D" type="Light2D" parent="."]
+[node name="Scanner" type="Node2D" parent="."]
+script = ExtResource( 25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Scanner"]
+layer = 3
+
+[node name="ColorRect" type="ColorRect" parent="Scanner/CanvasLayer"]
+material = ExtResource( 8 )
+margin_left = 1432.0
+margin_top = 408.0
+margin_right = 1824.0
+margin_bottom = 1016.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Scanner/CanvasLayer"]
 visible = false
-position = Vector2( 1129, 944 )
-scale = Vector2( 4, 4 )
-z_index = 1
-texture = ExtResource( 8 )
+position = Vector2( 1576, 608 )
+rotation = -0.0773189
+texture = ExtResource( 26 )
+
+[node name="MaskLight" type="Light2D" parent="Scanner"]
+position = Vector2( 1633, 704 )
+scale = Vector2( 6.14689, 9.78545 )
+z_index = 5
+texture = ExtResource( 29 )
 mode = 2
 range_item_cull_mask = 2
 shadow_item_cull_mask = 2
 
-[node name="Pickable" parent="Light2D" instance=ExtResource( 25 )]
+[node name="CanvasLayer2" type="CanvasLayer" parent="Scanner"]
+layer = 4
 
-[node name="CollisionShape2D" parent="Light2D/Pickable/PickableArea" index="0"]
-shape = SubResource( 11 )
-
-[node name="Sprite" type="Sprite" parent="Light2D"]
-texture = ExtResource( 26 )
+[node name="Sprite" type="Sprite" parent="Scanner/CanvasLayer2"]
+position = Vector2( 1072, 1072 )
+scale = Vector2( 1.51373, 1.51373 )
+z_index = 20
+texture = ExtResource( 28 )
+[connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
 [connection signal="quest_close" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_close"]
+[connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
 [connection signal="quest_open" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_close" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_close"]
+[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="popup_hide" from="MonitorPopup" to="MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="popup_hide" from="TabletPopup" to="TabletPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
 [connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
 [connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]
 [connection signal="mouse_exited" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_exited"]
@@ -537,5 +582,3 @@ texture = ExtResource( 26 )
 [connection signal="clicked" from="RejectButton/RejectButtonControl" to="." method="_on_RejectButtonControl_clicked"]
 [connection signal="mouse_entered" from="RejectButton/RejectButtonControl" to="RejectButton/Sprite" method="_on_ButtonControl_mouse_entered"]
 [connection signal="mouse_exited" from="RejectButton/RejectButtonControl" to="RejectButton/Sprite" method="_on_ButtonControl_mouse_exited"]
-
-[editable path="Light2D/Pickable"]

@@ -8,3 +8,4 @@ export(Array, Resource) var items_required
 export(int) var level = 1
 
 export(bool) var has_error = false
+export(String) var error

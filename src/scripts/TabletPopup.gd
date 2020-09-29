@@ -19,14 +19,19 @@ func _populate_tablet():
 		grid_container.add_child(tablet_item)
 
 
+func _input(event):
+	if event is InputEventKey and event.is_pressed():
+		if event.scancode == KEY_ESCAPE:
+			hide()
+			emit_signal("popup_hide")
+
+
 func _on_Popup_popup_hide() -> void:
 	var grid_container = $TextureRect/MarginContainer
 	
 	$TextureRect.rect_position = original_position
 
 	Util.delete_children_from_node(grid_container)
-	
-	get_tree().paused = false
 	
 	
 func _on_item_clicked(item : Item):
