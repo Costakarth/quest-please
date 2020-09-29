@@ -14,4 +14,4 @@ enum Type {
 
 export(Type) var type
 export(String) var name
-export(Image) var texture = null
+export(Texture) var texture = null

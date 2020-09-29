@@ -40,8 +40,6 @@ _global_script_class_icons={
 
 config/name="Quest Please"
 run/main_scene="res://src/scenes/Main.tscn"
-config/use_custom_user_dir=true
-config/custom_user_dir_name="questplease"
 config/icon="res://icon.png"
 
 [autoload]
@@ -49,6 +47,7 @@ config/icon="res://icon.png"
 QuestLoader="*res://src/globals/quest_loader.gd"
 CharacterLoader="*res://src/globals/character_loader.gd"
 ItemLoader="*res://src/globals/item_loader.gd"
+SceneManager="*res://src/scripts/SceneManager.gd"
 
 [display]
 
@@ -70,7 +69,7 @@ texture={
 "detect_3d": false,
 "flags/anisotropic": false,
 "flags/filter": false,
-"flags/mipmaps": false,
+"flags/mipmaps": true,
 "flags/repeat": 0,
 "flags/srgb": 2,
 "process/HDR_as_SRGB": false,
@@ -80,6 +79,13 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+
+[input]
+
+ui_cancel={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [layer_names]

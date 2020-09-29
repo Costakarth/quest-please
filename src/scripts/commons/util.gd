@@ -11,7 +11,7 @@ static func load_resources_from_directory(path : String) -> Array:
 		if file == "":
 			break
 		elif not file.begins_with("."):
-			result.append(load(path + "/" + file))
+			result.append(load(path + file))
 
 	dir.list_dir_end()
 

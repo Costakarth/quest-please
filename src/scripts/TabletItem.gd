@@ -1,6 +1,6 @@
-extends CenterContainer
+extends MarginContainer
 
-var item : Item
+var item : Item = null
 
 signal item_clicked
 

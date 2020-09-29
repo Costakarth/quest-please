@@ -1,11 +1,10 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=2 format=2]
 
 [ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/items/chip.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
 name = "Quest 3"
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-items_required = [ ExtResource( 2 ) ]
+items_required = [  ]
 level = 2

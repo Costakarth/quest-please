@@ -1,11 +1,18 @@
-[gd_resource type="Resource" load_steps=3 format=2]
+[gd_resource type="Resource" load_steps=5 format=2]
 
 [ext_resource path="res://src/entities/item.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures/green.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_worn.png" type="Texture" id=2]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/QP_I_Chip_01_small.png-b0dacef433e27053992930327bc0e5ea.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/QP_I_Chip_01.png-9812b85d7d0a8bec36307cdccc42f311.stex"
 
 [resource]
 script = ExtResource( 1 )
-name = "chip"
-description = "Colore: sasdas
-Ciao: POPO"
-texture = ExtResource( 2 )
+name = "Tonkatsu Memory Chip"
+description = ""
+texture = SubResource( 1 )
+texture_detailed = SubResource( 2 )
+texture_worn = ExtResource( 2 )

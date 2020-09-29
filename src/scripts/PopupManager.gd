@@ -24,3 +24,8 @@ func _on_item_clicked(item) -> void:
 	emit_signal("quest_close")
 	emit_signal("tablet_open_on_item", item)
 	
+func _on_MonitorPopup_popup_hide() -> void:
+	emit_signal("quest_close")
+
+func _on_TabletPopup_popup_hide() -> void:
+	emit_signal("tablet_close")

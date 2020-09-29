@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=3 format=2]
-
-[ext_resource path="res://src/entities/item.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures/white.png" type="Texture" id=2]
-
-[resource]
-script = ExtResource( 1 )
-name = "cigarettes"
-texture = ExtResource( 2 )

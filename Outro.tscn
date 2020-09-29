@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=1]
+[ext_resource path="res://assets/fonts/dyn_font_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Outro.gd" type="Script" id=3]
+[ext_resource path="res://assets/shaders/crt_material.tres" type="Material" id=4]
+
+[node name="Outro" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.823529 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 1.0031, 1.00155 )
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource( 4 )
+margin_left = 288.0
+margin_top = 72.0
+margin_right = 1672.0
+margin_bottom = 1024.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+margin_left = 232.0
+margin_top = -207.0
+margin_right = 2592.0
+margin_bottom = 1305.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="CanvasLayer2/TextureRect"]
+margin_left = 88.0
+margin_top = 423.0
+margin_right = 1400.0
+margin_bottom = 576.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "We cannot trust someone who does not know how to do his job.
+
+You are fired!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reason" type="Label" parent="CanvasLayer2/TextureRect"]
+margin_left = 88.0
+margin_top = 943.0
+margin_right = 1400.0
+margin_bottom = 1096.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "REASON"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

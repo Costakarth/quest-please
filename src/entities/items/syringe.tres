@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://src/entities/item.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/QP_I_Syringe_03.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/QP_I_Syringe_03_little.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/QP_I_Syringe_03_worn.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+name = "MindBooster Drug"
+description = ""
+texture = ExtResource( 3 )
+texture_detailed = ExtResource( 2 )
+texture_worn = ExtResource( 4 )
