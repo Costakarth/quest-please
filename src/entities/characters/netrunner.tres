@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/character_type.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/QP_C_NetRunner_01.png-bc8492c15087ba6b2c4b70f6874ce46a.stex"
+
+[resource]
+script = ExtResource( 1 )
+type = 1
+name = "Peppe"
+texture = SubResource( 1 )

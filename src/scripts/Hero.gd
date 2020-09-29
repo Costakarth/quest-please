@@ -1,4 +1,4 @@
-extends Node2D
+	extends Node2D
 
 onready var quest_item = preload("res://src/scenes/QuestItem.tscn")
 

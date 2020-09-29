@@ -1,36 +1,87 @@
 extends Node2D
 
+const Util = preload("res://src/scripts/commons/util.gd")
+
 export(int) var level = 1
 
-onready var vbox = $PanelContainer/MarginContainer/VBoxContainer
-onready var popup = $Popup
+onready var quest_grid : GridContainer = $Monitor/Margin/QuestGrid
+onready var popup_manager = $PopupManager
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
-onready var quest_image = preload("res://src/scenes/TextureRect.tscn")
-onready var CharacterManager = $CharacterManager;
+onready var quest_item = preload("res://src/scenes/QuestItem.tscn")
+onready var CharacterManager = $CharacterManager
+onready var itemContainer = $ItemContainer
+
+var character : Character = null
 
 func _ready() -> void:
 	_populate_quest_board(level)
 	CharacterManager.initialize($Waypoints/DoorWaypoint.position, $Waypoints/FrontDeskWaypoint.position)
-	#generate_character()
+
 
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.scancode == KEY_F1:
-			CharacterManager.create_character();
+			if !character:
+				character = CharacterManager.create_character()
+				character.show_character()
+				character.pick_quest(level)
+
+				character.connect("end_transition", self, "_on_end_transition")
 		if event.scancode == KEY_F2:
-			CharacterManager.get_child(0).showCharacter();
-	"""if event is InputEventKey and event.is_pressed():
-		if event.scancode == KEY_A:
-			character.showCharacter();
-		elif event.scancode == KEY_B:
-			character.hideCharacter();"""
-	pass
+			if character:
+				character.queue_free()
+				Util.delete_children_from_node(itemContainer)
+				
+
+func _on_end_transition():
+	var quest = character.quest
+				
+	var items = quest.items_required
+
+	var index = 1
+	for item in items:
+		var quest_item_instance = quest_item.instance()
+		quest_item_instance.visible = false
+		quest_item_instance.get_child(0).texture = item.texture
+		quest_item_instance.get_child(1).texture = item.texture_detailed
+		itemContainer.add_child(quest_item_instance)
+		var position_name : String = "ItemPosition/ItemWaypoint" + String(index)
+		quest_item_instance.position = get_node(position_name).position
+		quest_item_instance.visible = true
+		
+		index = index + 1
 
 
 func _populate_quest_board(level : int):
 	for quest in QuestLoader.quests[level]:
 		var quest_container_instance = quest_container.instance()
 		quest_container_instance.quest = quest
-		quest_container_instance.connect("clicked", popup, "_on_quest_clicked")
+		quest_container_instance.connect("clicked", popup_manager, "_on_quest_clicked")
 			
-		vbox.add_child(quest_container_instance)
+		quest_grid.add_child(quest_container_instance)
+
+
+func _on_ButtonControl_clicked() -> void:
+	if !character:
+		$BGDoorClose.visible = false
+		character = CharacterManager.create_character()
+		character.show_character()
+		yield(get_tree().create_timer(0.5), "timeout")
+		$BGDoorClose.visible = true
+		character.pick_quest(level)
+
+		character.connect("end_transition", self, "_on_end_transition")
+
+
+func _on_AcceptButtonControl_clicked() -> void:
+	Util.delete_children_from_node(itemContainer)
+	character.hideCharacter()
+	yield(get_tree().create_timer(0.5), "timeout")
+	$BGDoorClose.visible = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	$BGDoorClose.visible = true
+	
+
+func _on_RejectButtonControl_clicked() -> void:
+	Util.delete_children_from_node(itemContainer)
+	character.queue_free()
