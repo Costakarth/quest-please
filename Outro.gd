@@ -1,4 +1,4 @@
 extends Control
 
 func _ready():
-	$TextureRect/Reason.text = SceneManager.losing_reason
+	$BackMonitorLayer/TextureRect/MarginContainer/VBoxContainer/Reason.text = SceneManager.losing_reason

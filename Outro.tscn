@@ -1,9 +1,26 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/QP_04_Board_clean_outro.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_medium.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Outro.gd" type="Script" id=3]
-[ext_resource path="res://assets/shaders/crt_material.tres" type="Material" id=4]
+[ext_resource path="res://crt_shader.shader" type="Shader" id=4]
+[ext_resource path="res://assets/textures/QP_04_Board_back.png" type="Texture" id=5]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/boost = 1.2
+shader_param/grille_opacity = 0.85
+shader_param/scanlines_opacity = 0.95
+shader_param/vignette_opacity = 0.2
+shader_param/scanlines_speed = 1.0
+shader_param/show_grille = true
+shader_param/show_scanlines = true
+shader_param/show_vignette = true
+shader_param/show_curvature = true
+shader_param/screen_size = Vector2( 320, 180 )
+shader_param/aberration_amount = 0.0
+shader_param/move_aberration = false
+shader_param/aberration_speed = 1.0
 
 [node name="Outro" type="Control"]
 anchor_right = 1.0
@@ -17,46 +34,54 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -4.0
+margin_bottom = -4.0
 rect_scale = Vector2( 1.0031, 1.00155 )
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+[node name="BackMonitorLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-material = ExtResource( 4 )
-margin_left = 288.0
-margin_top = 72.0
-margin_right = 1672.0
-margin_bottom = 1024.0
+[node name="TextureRect" type="TextureRect" parent="BackMonitorLayer"]
+anchor_top = -0.0157407
+anchor_bottom = -0.0157407
+margin_left = 211.0
+margin_top = -203.0
+margin_right = 1535.0
+margin_bottom = 1134.0
+rect_scale = Vector2( 1.12961, 1.1449 )
+texture = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
-margin_left = 232.0
-margin_top = -207.0
-margin_right = 2592.0
-margin_bottom = 1305.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 5
+[node name="MarginContainer" type="MarginContainer" parent="BackMonitorLayer/TextureRect"]
+margin_left = 54.0
+margin_top = 244.0
+margin_right = 1293.0
+margin_bottom = 1082.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="CanvasLayer2/TextureRect"]
-margin_left = 88.0
-margin_top = 423.0
-margin_right = 1400.0
-margin_bottom = 576.0
+[node name="VBoxContainer" type="VBoxContainer" parent="BackMonitorLayer/TextureRect/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 1229.0
+margin_bottom = 828.0
+custom_constants/separation = 120
+alignment = 1
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/MarginContainer/VBoxContainer"]
+margin_top = 118.0
+margin_right = 1219.0
+margin_bottom = 505.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "We cannot trust someone who does not know how to do his job.
@@ -69,11 +94,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reason" type="Label" parent="CanvasLayer2/TextureRect"]
-margin_left = 88.0
-margin_top = 943.0
-margin_right = 1400.0
-margin_bottom = 1096.0
+[node name="Reason" type="Label" parent="BackMonitorLayer/TextureRect/MarginContainer/VBoxContainer"]
+margin_top = 625.0
+margin_right = 1219.0
+margin_bottom = 700.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
 text = "REASON"
@@ -82,4 +106,42 @@ valign = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="ShaderLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ColorRect" type="ColorRect" parent="ShaderLayer"]
+material = SubResource( 1 )
+anchor_left = 0.137687
+anchor_top = 0.867593
+anchor_right = 1.13006
+anchor_bottom = 1.33567
+margin_left = 1406.64
+margin_top = 68.0
+margin_right = 908.28
+margin_bottom = 496.48
+rect_rotation = 180.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="BoardLayer" type="CanvasLayer" parent="."]
+layer = 3
+
+[node name="TextureRect" type="TextureRect" parent="BoardLayer"]
+anchor_left = -7.94729e-09
+anchor_top = -0.0157407
+anchor_bottom = -0.0157407
+margin_left = 216.0
+margin_top = -204.0
+margin_right = 2576.0
+margin_bottom = 1308.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": true
 }

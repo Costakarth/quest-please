@@ -1,4 +1,4 @@
 extends Node
 
-var losing_reason
+var losing_reason : String = "d"
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
@@ -25,10 +25,14 @@
 [ext_resource path="res://assets/textures/QP_07_Button_square_red.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/QP_07_Button_square_green.png" type="Texture" id=24]
 [ext_resource path="res://src/scenes/Scanner.gd" type="Script" id=25]
-[ext_resource path="res://assets/textures/QP_03_Sheet.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/QP_04_Board_clean.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/Monitor.PNG" type="Texture" id=27]
-[ext_resource path="res://assets/textures/xray.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/QP_04_Board_back_rows.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/square.png" type="Texture" id=29]
+[ext_resource path="res://assets/monitor.PNG" type="Texture" id=30]
+[ext_resource path="res://assets/monitor_mount.PNG" type="Texture" id=31]
+[ext_resource path="res://assets/fonts/dyn_font_largestest.tres" type="DynamicFont" id=32]
+[ext_resource path="res://src/scenes/ErrorMonitor.gd" type="Script" id=33]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -193,16 +197,20 @@ position = Vector2( 898, 718 )
 [node name="ItemWaypoint5" type="Position2D" parent="ItemPosition"]
 position = Vector2( 1082, 710 )
 
-[node name="MonitorPopup" type="Popup" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="MonitorPopup" type="Popup" parent="CanvasLayer"]
 pause_mode = 2
-margin_right = 1920.0
+margin_left = -1.0
+margin_right = 1919.0
 margin_bottom = 1080.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="ColorRect" parent="MonitorPopup"]
+[node name="Background" type="ColorRect" parent="CanvasLayer/MonitorPopup"]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -212,7 +220,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Texture" type="TextureRect" parent="MonitorPopup"]
+[node name="Texture" type="TextureRect" parent="CanvasLayer/MonitorPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -229,7 +237,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Margin" type="MarginContainer" parent="MonitorPopup/Texture"]
+[node name="Margin" type="MarginContainer" parent="CanvasLayer/MonitorPopup/Texture"]
 anchor_left = 0.032
 anchor_top = 0.19
 anchor_right = 0.968
@@ -247,7 +255,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MonitorPopup/Texture/Margin"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MonitorPopup/Texture/Margin"]
 margin_left = 50.0
 margin_top = 10.0
 margin_right = 1187.0
@@ -257,7 +265,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="Label" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
+[node name="Name" type="Label" parent="CanvasLayer/MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_right = 1137.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
@@ -267,7 +275,7 @@ text = "Quest 1"
 align = 1
 valign = 1
 
-[node name="Description" type="RichTextLabel" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
+[node name="Description" type="RichTextLabel" parent="CanvasLayer/MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 210.0
 margin_right = 1137.0
 margin_bottom = 610.0
@@ -277,25 +285,26 @@ meta_underlined = false
 text = "sdfsfsdfsdsdadasdasdsa
 asdasdawqeqwewqeqwewqewqeqweqwwwewr asdasdasdadzxzczczxczxczxcd"
 
-[node name="Items" type="HBoxContainer" parent="MonitorPopup/Texture/Margin/VBoxContainer"]
+[node name="Items" type="HBoxContainer" parent="CanvasLayer/MonitorPopup/Texture/Margin/VBoxContainer"]
 margin_top = 620.0
 margin_right = 1137.0
 margin_bottom = 820.0
 rect_min_size = Vector2( 0, 200 )
 alignment = 1
 
-[node name="Tween" type="Tween" parent="MonitorPopup"]
+[node name="Tween" type="Tween" parent="CanvasLayer/MonitorPopup"]
 
-[node name="TabletPopup" type="Popup" parent="."]
+[node name="TabletPopup" type="Popup" parent="CanvasLayer"]
 pause_mode = 2
-margin_right = 1920.0
+margin_left = -1.0
+margin_right = 1919.0
 margin_bottom = 1080.0
 script = ExtResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="ColorRect" parent="TabletPopup"]
+[node name="Background" type="ColorRect" parent="CanvasLayer/TabletPopup"]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -307,7 +316,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="TabletPopup"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/TabletPopup"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -325,7 +334,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="TabletPopup/TextureRect"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TabletPopup/TextureRect"]
 anchor_left = 0.103
 anchor_top = 0.039
 anchor_right = 0.866
@@ -344,7 +353,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Tween" type="Tween" parent="TabletPopup"]
+[node name="Tween" type="Tween" parent="CanvasLayer/TabletPopup"]
 
 [node name="Desk" type="Sprite" parent="."]
 position = Vector2( 752, 540 )
@@ -440,7 +449,7 @@ __meta__ = {
 
 [node name="QuestGrid" type="GridContainer" parent="Monitor/Margin"]
 margin_right = 805.0
-margin_bottom = 208.0
+margin_bottom = 207.0
 columns = 2
 
 [node name="Waypoints" type="Node" parent="."]
@@ -513,31 +522,71 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ErrorMonitor" type="Node2D" parent="."]
+position = Vector2( 1785, 664 )
+rotation = 1.57079
+script = ExtResource( 33 )
+
+[node name="Mount" type="Sprite" parent="ErrorMonitor"]
+position = Vector2( 151.997, 1256 )
+rotation = -3.14159
+texture = ExtResource( 31 )
+
+[node name="Monitor" type="Sprite" parent="ErrorMonitor"]
+position = Vector2( 16.4053, 1809.37 )
+rotation = -1.57079
+scale = Vector2( 0.487003, 0.827336 )
+texture = ExtResource( 30 )
+
+[node name="Label" type="Label" parent="ErrorMonitor"]
+margin_left = -264.004
+margin_top = 1672.0
+margin_right = -96.0037
+margin_bottom = 1836.0
+rect_rotation = -91.4818
+custom_fonts/font = ExtResource( 32 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Scanner" type="Node2D" parent="."]
+position = Vector2( 33, 0 )
 script = ExtResource( 25 )
+
+[node name="BackMonitor" type="Sprite" parent="Scanner"]
+position = Vector2( 1629.42, 718.122 )
+rotation = 1.57079
+scale = Vector2( 0.497978, 0.477555 )
+texture = ExtResource( 28 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Scanner"]
 layer = 3
 
 [node name="ColorRect" type="ColorRect" parent="Scanner/CanvasLayer"]
 material = ExtResource( 8 )
-margin_left = 1432.0
-margin_top = 408.0
-margin_right = 1824.0
-margin_bottom = 1016.0
+anchor_left = 0.758
+anchor_top = 0.378
+anchor_right = 0.968
+anchor_bottom = 0.938
+margin_left = 402.64
+margin_top = -0.240021
+margin_right = 604.44
+margin_bottom = -203.04
+rect_rotation = 89.9999
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Scanner/CanvasLayer"]
-visible = false
-position = Vector2( 1576, 608 )
-rotation = -0.0773189
-texture = ExtResource( 26 )
-
 [node name="MaskLight" type="Light2D" parent="Scanner"]
-position = Vector2( 1633, 704 )
-scale = Vector2( 6.14689, 9.78545 )
+position = Vector2( 1624, 712 )
+rotation = -0.00451159
+scale = Vector2( 6.18941, 9.52413 )
 z_index = 5
 texture = ExtResource( 29 )
 mode = 2
@@ -547,26 +596,28 @@ shadow_item_cull_mask = 2
 [node name="CanvasLayer2" type="CanvasLayer" parent="Scanner"]
 layer = 4
 
-[node name="Sprite" type="Sprite" parent="Scanner/CanvasLayer2"]
-position = Vector2( 1072, 1072 )
-scale = Vector2( 1.51373, 1.51373 )
+[node name="Border" type="Sprite" parent="Scanner/CanvasLayer2"]
+position = Vector2( 1658, 710 )
+rotation = 1.57079
+scale = Vector2( 0.486, 0.467 )
 z_index = 20
-texture = ExtResource( 28 )
+texture = ExtResource( 26 )
+[connection signal="new_error" from="." to="ErrorMonitor" method="_on_Main_new_error"]
 [connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
-[connection signal="quest_close" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_close"]
+[connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
 [connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
-[connection signal="quest_open" from="PopupManager" to="MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
 [connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
-[connection signal="tablet_close" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_close"]
-[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
-[connection signal="tablet_open_on_item" from="PopupManager" to="TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
-[connection signal="popup_hide" from="MonitorPopup" to="MonitorPopup" method="_on_Popup_popup_hide"]
-[connection signal="popup_hide" from="MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
-[connection signal="popup_hide" from="TabletPopup" to="TabletPopup" method="_on_Popup_popup_hide"]
-[connection signal="popup_hide" from="TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="CanvasLayer/TabletPopup" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
 [connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]
 [connection signal="mouse_exited" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_exited"]

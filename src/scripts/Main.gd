@@ -2,8 +2,12 @@ extends Node2D
 
 const Util = preload("res://src/scripts/commons/util.gd")
 
+signal new_error
+
 export(int) var level = 1
 
+export(int) var error_qnty = 0
+export(int) var max_error_qnty = 3
 onready var quest_grid : GridContainer = $Monitor/Margin/QuestGrid
 onready var popup_manager = $PopupManager
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
@@ -73,9 +77,8 @@ func _on_ButtonControl_clicked() -> void:
 
 
 func _on_AcceptButtonControl_clicked() -> void:
-	if (character.quest.has_error):
-		SceneManager.losing_reason = character.quest.error
-		get_tree().change_scene("res://Outro.tscn")
+	if character.quest.has_error:
+		_check_errors()
 	Util.delete_children_from_node(itemContainer)
 	character.hideCharacter()
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -86,9 +89,16 @@ func _on_AcceptButtonControl_clicked() -> void:
 
 func _on_RejectButtonControl_clicked() -> void:
 	if !character.quest.has_error:
-		SceneManager.losing_reason = character.quest.error
-		get_tree().change_scene("res://Outro.tscn")
+		_check_errors()
 	Util.delete_children_from_node(itemContainer)
 	character.drop_character()
 	yield(get_tree().create_timer(0.5), "timeout")
 	character.queue_free()
+
+
+func _check_errors():
+	error_qnty = error_qnty + 1
+	emit_signal("new_error")
+	if error_qnty >= max_error_qnty:
+		SceneManager.losing_reason = character.quest.error
+		get_tree().change_scene("res://Outro.tscn")

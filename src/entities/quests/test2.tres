@@ -1,26 +1,13 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/item.gd" type="Script" id=2]
-[ext_resource path="res://assets/textures/QP_I_Chip_01_worn.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/border.png" type="Texture" id=4]
-
-[sub_resource type="StreamTexture" id=2]
-load_path = "res://.import/QP_I_Chip_01.png-9812b85d7d0a8bec36307cdccc42f311.stex"
-
-[sub_resource type="Resource" id=3]
-script = ExtResource( 2 )
-name = "Tonkatsu Memory Chip"
-description = ""
-texture = ExtResource( 4 )
-texture_detailed = SubResource( 2 )
-texture_worn = ExtResource( 3 )
+[ext_resource path="res://src/entities/items/floppy.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
 name = "Quest 2"
 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-items_required = [ SubResource( 3 ), SubResource( 3 ) ]
+items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
 level = 1
 has_error = false
 error = ""
