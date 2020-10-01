@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="41bf5e0e-2e49-4dc4-941d-1a7b39758bbb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/assets/fonts/dyn_font_large.tres" beforeDir="false" afterPath="$PROJECT_DIR$/assets/fonts/dyn_font_large.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/shaders/crt_material.tres" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/crt_material.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/shaders/outline_shader.tres" beforeDir="false" afterPath="$PROJECT_DIR$/assets/shaders/outline_shader.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/Desk.PNG.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/Desk.PNG.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/Monitor.PNG.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/Monitor.PNG.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_01_Background_1_bis.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_01_Background_1_bis.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_01_Background_1_bis_no_door.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_01_Background_1_bis_no_door.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_02_Tablet.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_02_Tablet.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_02_Tablet_little.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_02_Tablet_little.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_03_Sheet.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_03_Sheet.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_03_Sheet_little.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_03_Sheet_little.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_04_Board.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_04_Board.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_06_Counter.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_06_Counter.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_blue.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_blue.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_gray.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_gray.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_green.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_green.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_red.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_red.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_yellow.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_round_yellow.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_blue.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_blue.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_gray.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_gray.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_green.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_green.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_red.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_red.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_yellow.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_07_Button_square_yellow.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Corporation_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Corporation_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Corporation_02.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Corporation_02.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Driver_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Driver_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Fixer_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Fixer_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Fixer_02.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Fixer_02.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Merchant_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Merchant_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_NetRunner_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_NetRunner_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_C_Scientist_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_C_Scientist_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04_little.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04_little.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04_worn.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Alcohol_04_worn.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01_small.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01_small.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01_worn.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Chip_01_worn.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02_small.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02_small.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02_worn.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Cigarette_02_worn.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05_little.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05_little.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05_worn.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Floppy_05_worn.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03_little.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03_little.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03_worn.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/QP_I_Syringe_03_worn.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/border.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/border.png.import" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/circle.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/circle.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/square.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/square.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/textures/xray.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/assets/textures/xray.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/favicon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/favicon.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icon.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/icon.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/corporation.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/corporation.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/corporation2.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/corporation2.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/driver.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/driver.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/fixer.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/fixer.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/fixer2.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/fixer2.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/merchant.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/merchant.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/netrunner.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/netrunner.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/characters/scientist.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/characters/scientist.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/items/bottle.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/items/bottle.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/items/chip.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/items/chip.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/items/cigarette.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/items/cigarette.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/items/floppy.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/items/floppy.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/items/syringe.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/items/syringe.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/quests/test.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/quests/test.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/quests/test2.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/quests/test2.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/quests/test3.tres" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/quests/test3.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/Main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/QuestItem.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/QuestItem.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/Sprite.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Sprite.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scripts/Hero.gd" beforeDir="false" afterPath="$PROJECT_DIR$/src/scripts/Hero.gd" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1iDsZVH8ZEThG6yBRAbEnwlHtlz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41bf5e0e-2e49-4dc4-941d-1a7b39758bbb" name="Default Changelist" comment="" />
+      <created>1601453558302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601453558302</updated>
+      <workItem from="1601453567460" duration="593000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

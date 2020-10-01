@@ -4,6 +4,6 @@
 
 [resource]
 size = 90
-outline_size = 6
+outline_size = 3
 use_mipmaps = true
 font_data = ExtResource( 1 )
