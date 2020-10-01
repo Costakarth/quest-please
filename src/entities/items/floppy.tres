@@ -12,7 +12,9 @@
 script = ExtResource( 1 )
 name = "FloppyDisk 512 Exabyte"
 description = "This innovative data storage device combines the power of new world technology and the old world's most beloved hipster icon.
+
 It can easily hold trillions of billions of photos of your beloved pets.
+
 Keep away from heat and moisture."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 2 )

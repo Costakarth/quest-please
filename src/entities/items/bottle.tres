@@ -12,6 +12,7 @@
 script = ExtResource( 1 )
 name = "OldPremium Barley Whiskey"
 description = "This barley whiskey shows some maple syrup and honey sweetness, but its character comes from savory notes of earthiness and wet leaves.
+
 An old world legacy."
 texture = ExtResource( 2 )
 texture_detailed = ExtResource( 3 )

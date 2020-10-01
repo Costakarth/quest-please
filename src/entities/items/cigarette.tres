@@ -12,6 +12,7 @@
 script = ExtResource( 1 )
 name = "CyanHaze Cigarettes"
 description = "The best imported cigarettes, rolled by hand by the best children in CargoCity. 
+
 They taste sweet, emit clouds of cyan colour when you smoke them and will surely make you the coolest of all your trusted pulmonologist's patients."
 texture = ExtResource( 2 )
 texture_detailed = ExtResource( 3 )

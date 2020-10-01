@@ -33,7 +33,6 @@ func _quest_clicked(quest):
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.scancode == KEY_ESCAPE:
-			hide()
 			emit_signal("popup_hide")
 
 
@@ -47,3 +46,7 @@ func _on_PopupManager_quest_open(quest) -> void:
 
 func _on_PopupManager_quest_close() -> void:
 	hide()
+
+
+func _on_Background_clicked() -> void:
+	emit_signal("popup_hide")

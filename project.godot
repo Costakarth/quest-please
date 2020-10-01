@@ -53,7 +53,6 @@ config/icon="res://icon.png"
 QuestLoader="*res://src/globals/quest_loader.gd"
 CharacterLoader="*res://src/globals/character_loader.gd"
 ItemLoader="*res://src/globals/item_loader.gd"
-SceneManager="*res://src/scripts/SceneManager.gd"
 
 [display]
 

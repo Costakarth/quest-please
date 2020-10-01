@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_64.tres" type="DynamicFont" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://src/scripts/MonitorPopup.gd" type="Script" id=5]
 [ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/QP_02_Tablet_little.png" type="Texture" id=7]
-[ext_resource path="res://CRT.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/scenes/CRT.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://assets/textures/Desk.PNG" type="Texture" id=10]
 [ext_resource path="res://src/scripts/TabletButton.gd" type="Script" id=11]
@@ -19,12 +19,12 @@
 [ext_resource path="res://src/scripts/SheetButton.gd" type="Script" id=17]
 [ext_resource path="res://src/scripts/SheetSprite.gd" type="Script" id=18]
 [ext_resource path="res://src/scripts/PopupManager.gd" type="Script" id=19]
-[ext_resource path="res://src/scenes/Sprite.gd" type="Script" id=20]
-[ext_resource path="res://src/scenes/ButtonDoor.gd" type="Script" id=21]
+[ext_resource path="res://src/scripts/Sprite.gd" type="Script" id=20]
+[ext_resource path="res://src/scripts/ButtonDoor.gd" type="Script" id=21]
 [ext_resource path="res://assets/shaders/outline_shader.tres" type="Material" id=22]
 [ext_resource path="res://assets/textures/QP_07_Button_square_red.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/QP_07_Button_square_green.png" type="Texture" id=24]
-[ext_resource path="res://src/scenes/Scanner.gd" type="Script" id=25]
+[ext_resource path="res://src/scripts/Scanner.gd" type="Script" id=25]
 [ext_resource path="res://assets/textures/QP_08_Magnifier_border.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/Monitor.PNG" type="Texture" id=27]
 [ext_resource path="res://assets/textures/QP_08_Magnifier_background.png" type="Texture" id=28]
@@ -32,11 +32,12 @@
 [ext_resource path="res://assets/textures/monitor_screen.PNG" type="Texture" id=30]
 [ext_resource path="res://assets/textures/monitor_mount.PNG" type="Texture" id=31]
 [ext_resource path="res://assets/fonts/dyn_font_90.tres" type="DynamicFont" id=32]
-[ext_resource path="res://src/scenes/ErrorMonitor.gd" type="Script" id=33]
+[ext_resource path="res://src/scripts/ErrorMonitor.gd" type="Script" id=33]
 [ext_resource path="res://assets/fonts/dyn_font_20.tres" type="DynamicFont" id=34]
 [ext_resource path="res://assets/textures/QP_03_Sheet.png" type="Texture" id=35]
 [ext_resource path="res://assets/fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=36]
-[ext_resource path="res://src/scenes/SheetPopup.gd" type="Script" id=37]
+[ext_resource path="res://src/scripts/SheetPopup.gd" type="Script" id=37]
+[ext_resource path="res://src/scripts/Background.gd" type="Script" id=38]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -57,12 +58,12 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=4]
 size = 120
 use_mipmaps = true
 font_data = ExtResource( 36 )
 
-[sub_resource type="Shader" id=4]
+[sub_resource type="Shader" id=5]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -90,18 +91,18 @@ void fragment()
 
     COLOR = vec4(tcol.rgb, tcol.a);
 }"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-shader_param/outLineSize = 0.01
-shader_param/alpha = 0.0
 
 [sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 4 )
+shader = SubResource( 5 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="Shader" id=7]
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 5 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="Shader" id=8]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -130,16 +131,16 @@ void fragment()
     COLOR = vec4(tcol.rgb, tcol.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=8]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="StreamTexture" id=9]
+[sub_resource type="StreamTexture" id=10]
 flags = 1
 load_path = "res://.import/QP_07_Button_round_blue.png-3c52e40414a3a77bda2ccc70dcbdd2a8.stex"
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=11]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -164,12 +165,12 @@ func _on_ButtonControl_mouse_exited() -> void:
 	selected = false
 "
 
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 7 )
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 8 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -237,6 +238,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_scale = Vector2( 1.0031, 1.00155 )
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -333,6 +335,7 @@ margin_left = 1.0
 margin_right = 1.0
 rect_scale = Vector2( 1.0031, 1.00155 )
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+script = ExtResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -435,7 +438,7 @@ margin_top = 39.0295
 margin_right = 495.398
 margin_bottom = 295.029
 rect_rotation = -8.21343
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_constants/line_spacing = -80
 text = "ALWAYS
@@ -483,7 +486,7 @@ __meta__ = {
 [node name="Tablet" type="Node2D" parent="."]
 
 [node name="TabletSprite" type="Sprite" parent="Tablet"]
-material = SubResource( 5 )
+material = SubResource( 6 )
 position = Vector2( 353, 928 )
 texture = ExtResource( 7 )
 script = ExtResource( 16 )
@@ -502,7 +505,7 @@ __meta__ = {
 position = Vector2( 600.304, -451.172 )
 
 [node name="SheetSprite" type="Sprite" parent="Sheet"]
-material = SubResource( 6 )
+material = SubResource( 7 )
 position = Vector2( 633, 904 )
 texture = ExtResource( 15 )
 script = ExtResource( 18 )
@@ -575,9 +578,9 @@ script = ExtResource( 14 )
 position = Vector2( 161, 856 )
 
 [node name="Sprite" type="Sprite" parent="ButtonDoor"]
-material = SubResource( 8 )
-texture = SubResource( 9 )
-script = SubResource( 10 )
+material = SubResource( 9 )
+texture = SubResource( 10 )
+script = SubResource( 11 )
 
 [node name="ButtonControl" type="Control" parent="ButtonDoor"]
 margin_left = -32.0
@@ -593,9 +596,9 @@ __meta__ = {
 position = Vector2( 1297, 824 )
 
 [node name="Sprite" type="Sprite" parent="AcceptButton"]
-material = SubResource( 11 )
+material = SubResource( 12 )
 texture = ExtResource( 24 )
-script = SubResource( 12 )
+script = SubResource( 13 )
 
 [node name="AcceptButtonControl" type="Control" parent="AcceptButton"]
 margin_left = -32.0
@@ -722,8 +725,10 @@ texture = ExtResource( 26 )
 [connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="clicked" from="CanvasLayer/MonitorPopup/Background" to="CanvasLayer/MonitorPopup" method="_on_Background_clicked"]
 [connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="CanvasLayer/TabletPopup" method="_on_Popup_popup_hide"]
+[connection signal="clicked" from="CanvasLayer/TabletPopup/Background" to="CanvasLayer/TabletPopup" method="_on_Background_clicked"]
 [connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
 [connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]
 [connection signal="mouse_exited" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_exited"]

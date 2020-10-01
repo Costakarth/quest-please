@@ -22,7 +22,6 @@ func _populate_tablet():
 func _input(event):
 	if event is InputEventKey and event.is_pressed():
 		if event.scancode == KEY_ESCAPE:
-			hide()
 			emit_signal("popup_hide")
 
 
@@ -74,3 +73,7 @@ func _on_PopupManager_tablet_open_on_item(item) -> void:
 	
 	$Tween.interpolate_property(tablet, "rect_position:y", tablet.rect_position.y, 0, .5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
+
+
+func _on_Background_clicked() -> void:
+	emit_signal("popup_hide")

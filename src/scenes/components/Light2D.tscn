@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/scenes/components/Pickable.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/circle.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/border.png" type="Texture" id=3]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="StreamTexture" id=1]
+flags = 1
+load_path = "res://.import/circle.png-cfb642d06c602215a6b6cc6699d3b82d.stex"
+
+[sub_resource type="GDScript" id=2]
 script/source = "extends Node2D
 
 var drag_enabled = false
@@ -15,13 +17,12 @@ visible = false
 position = Vector2( 1129, 944 )
 scale = Vector2( 4, 4 )
 z_index = 1
-texture = ExtResource( 2 )
+texture = SubResource( 1 )
 mode = 2
 range_item_cull_mask = 2
 shadow_item_cull_mask = 2
 
-[node name="Pickable" type="Node2D" parent="." instance=ExtResource( 1 )]
-script = SubResource( 1 )
+[node name="Pickable" parent="." instance=ExtResource( 1 )]
+script = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )

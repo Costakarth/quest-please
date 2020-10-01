@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/QP_04_Board_back_rows.png-72acc3eab7707032837682993f7f5509.stex"
+path="res://.import/Subtract.png-450183a221bf29ab0a9b70fe8fdfad83.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/QP_04_Board_back_rows.png"
-dest_files=[ "res://.import/QP_04_Board_back_rows.png-72acc3eab7707032837682993f7f5509.stex" ]
+source_file="res://assets/textures/Subtract.png"
+dest_files=[ "res://.import/Subtract.png-450183a221bf29ab0a9b70fe8fdfad83.stex" ]
 
 [params]
 

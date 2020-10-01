@@ -12,6 +12,7 @@
 script = ExtResource( 1 )
 name = "Tonkatsu Memory Chip"
 description = "This neo-Asian production chip provides a computing power capable of launching a missile perfectly into your worst enemy's bathroom or running Crysis at maximum settings.
+
 Inedible."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 4 )

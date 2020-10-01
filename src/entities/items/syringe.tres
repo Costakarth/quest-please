@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 name = "MindBooster Drug"
 description = "This syntethic drug is a painkiller, endorphins reduce pain and stress effects. It also has a nasty cost in nervous system damage.
 Mindbooster users become fearless, cold-blooded killing machines — exactly what its military designers were looking for.
+
 Do not take on an empty stomach."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 2 )
