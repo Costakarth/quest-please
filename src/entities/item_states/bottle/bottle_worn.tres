@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/item_state.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/QP_I_Alcohol_04_err_worn.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+error_type = 3
+texture_array = [ ExtResource( 2 ) ]
+difficulty = 0

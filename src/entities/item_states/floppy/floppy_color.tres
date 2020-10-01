@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://src/entities/item_state.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/QP_I_Floppy_05_err_color_03.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/QP_I_Floppy_05_err_color_02.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/QP_I_Floppy_05_err_color_01.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 1 )
+error_type = 1
+texture_array = [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ]
+difficulty = 3

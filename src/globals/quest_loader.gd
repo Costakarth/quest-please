@@ -6,8 +6,6 @@ var quest_path = "res://src/entities/quests/"
 
 var quests := {}
 
-func _ready() -> void:
-	randomize()
 
 func _init() -> void:
 	var quests_list = Util.load_resources_from_directory(quest_path)

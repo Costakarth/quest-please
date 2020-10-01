@@ -1,12 +1,14 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://crt_shader.shader" type="Shader" id=1]
-[ext_resource path="res://assets/fonts/dyn_font_medium.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/dyn_font_60.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/QP_04_Board_back.png" type="Texture" id=3]
 [ext_resource path="res://Intro.gd" type="Script" id=4]
 [ext_resource path="res://assets/textures/QP_04_Board_clean_outro.png" type="Texture" id=5]
 [ext_resource path="res://Enter.gd" type="Script" id=6]
-[ext_resource path="res://assets/fonts/dyn_font_small-medium.tres" type="DynamicFont" id=7]
+[ext_resource path="res://assets/fonts/dyn_font_40.tres" type="DynamicFont" id=7]
+
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 1 )

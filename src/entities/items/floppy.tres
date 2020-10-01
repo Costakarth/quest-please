@@ -1,14 +1,19 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/item.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/QP_I_Floppy_05.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/QP_I_Floppy_05_little.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/QP_I_Floppy_05_worn.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/item_states/floppy/floppy_broken.tres" type="Resource" id=4]
+[ext_resource path="res://src/entities/item_states/floppy/floppy_worn.tres" type="Resource" id=5]
+[ext_resource path="res://src/entities/item_states/floppy/floppy_color.tres" type="Resource" id=6]
+[ext_resource path="res://src/entities/item_states/floppy/floppy_string.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 name = "FloppyDisk 512 Exabyte"
-description = ""
+description = "This innovative data storage device combines the power of new world technology and the old world's most beloved hipster icon.
+It can easily hold trillions of billions of photos of your beloved pets.
+Keep away from heat and moisture."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 2 )
-texture_worn = ExtResource( 4 )
+item_states = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ) ]

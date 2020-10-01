@@ -4,7 +4,6 @@ var second_counter : float = 0
 var selected : bool = false
 
 func _process(delta : float) -> void:
-	
 	if selected:
 		second_counter += delta
 		var uniform_periodic = abs(cos(second_counter * 3))
@@ -20,3 +19,7 @@ func _on_SheetButton_mouse_entered() -> void:
 
 func _on_SheetButton_mouse_exited() -> void:
 	selected = false
+
+
+func _on_Main_new_char_to_avoid(_char) -> void:
+	selected = true

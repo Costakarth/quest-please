@@ -7,8 +7,6 @@ var _load_path = "res://src/entities/characters/"
 var _characters := []
 var _characters_by_type := {}
 
-func _ready() -> void:
-	randomize()
 
 func _init() -> void:
 	_characters = Util.load_resources_from_directory(_load_path);

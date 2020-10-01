@@ -1,14 +1,19 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/item.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/QP_I_Syringe_03.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/QP_I_Syringe_03_little.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/QP_I_Syringe_03_worn.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/item_states/syringe/syringe_drug_color.tres" type="Resource" id=4]
+[ext_resource path="res://src/entities/item_states/syringe/syringe_color.tres" type="Resource" id=5]
+[ext_resource path="res://src/entities/item_states/syringe/syringe_broken.tres" type="Resource" id=6]
+[ext_resource path="res://src/entities/item_states/syringe/syringe_worn.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 name = "MindBooster Drug"
-description = ""
+description = "This syntethic drug is a painkiller, endorphins reduce pain and stress effects. It also has a nasty cost in nervous system damage.
+Mindbooster users become fearless, cold-blooded killing machines — exactly what its military designers were looking for.
+Do not take on an empty stomach."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 2 )
-texture_worn = ExtResource( 4 )
+item_states = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ) ]

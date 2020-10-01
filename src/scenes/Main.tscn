@@ -1,13 +1,13 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
-[ext_resource path="res://assets/fonts/dyn_font_large.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/fonts/dyn_font_64.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis.png" type="Texture" id=3]
 [ext_resource path="res://assets/fonts/Kenney Rocket Square.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/scripts/MonitorPopup.gd" type="Script" id=5]
 [ext_resource path="res://assets/textures/QP_04_Board.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/QP_02_Tablet_little.png" type="Texture" id=7]
-[ext_resource path="res://assets/shaders/crt_material.tres" type="Material" id=8]
+[ext_resource path="res://CRT.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/scripts/Main.gd" type="Script" id=9]
 [ext_resource path="res://assets/textures/Desk.PNG" type="Texture" id=10]
 [ext_resource path="res://src/scripts/TabletButton.gd" type="Script" id=11]
@@ -25,14 +25,18 @@
 [ext_resource path="res://assets/textures/QP_07_Button_square_red.png" type="Texture" id=23]
 [ext_resource path="res://assets/textures/QP_07_Button_square_green.png" type="Texture" id=24]
 [ext_resource path="res://src/scenes/Scanner.gd" type="Script" id=25]
-[ext_resource path="res://assets/textures/QP_04_Board_clean.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/QP_08_Magnifier_border.png" type="Texture" id=26]
 [ext_resource path="res://assets/textures/Monitor.PNG" type="Texture" id=27]
-[ext_resource path="res://assets/textures/QP_04_Board_back_rows.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/QP_08_Magnifier_background.png" type="Texture" id=28]
 [ext_resource path="res://assets/textures/square.png" type="Texture" id=29]
 [ext_resource path="res://assets/textures/monitor_screen.PNG" type="Texture" id=30]
 [ext_resource path="res://assets/textures/monitor_mount.PNG" type="Texture" id=31]
-[ext_resource path="res://assets/fonts/dyn_font_largestest.tres" type="DynamicFont" id=32]
+[ext_resource path="res://assets/fonts/dyn_font_90.tres" type="DynamicFont" id=32]
 [ext_resource path="res://src/scenes/ErrorMonitor.gd" type="Script" id=33]
+[ext_resource path="res://assets/fonts/dyn_font_20.tres" type="DynamicFont" id=34]
+[ext_resource path="res://assets/textures/QP_03_Sheet.png" type="Texture" id=35]
+[ext_resource path="res://assets/fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=36]
+[ext_resource path="res://src/scenes/SheetPopup.gd" type="Script" id=37]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -43,44 +47,22 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="Shader" id=2]
 code = "shader_type canvas_item;
-render_mode blend_mix;
 
-uniform float outLineSize = 0.02;
-uniform float alpha  = 0;
-
-void fragment()
-{
-	vec4 outLineColor = vec4(1.0, 1.0, 1.0, alpha);
-    vec4 tcol = texture(TEXTURE, UV);
-
-    if (tcol.a == 0.0)
-    {
-        if (texture(TEXTURE, UV + vec2(0.0,          outLineSize)).a  != 0.0 ||
-            texture(TEXTURE, UV + vec2(0.0,         -outLineSize)).a  != 0.0 ||
-            texture(TEXTURE, UV + vec2(outLineSize,  0.0)).a          != 0.0 ||
-            texture(TEXTURE, UV + vec2(-outLineSize, 0.0)).a          != 0.0 ||
-            texture(TEXTURE, UV + vec2(-outLineSize, outLineSize)).a  != 0.0 ||
-            texture(TEXTURE, UV + vec2(-outLineSize, -outLineSize)).a != 0.0 ||
-            texture(TEXTURE, UV + vec2(outLineSize,  outLineSize)).a  != 0.0 ||
-            texture(TEXTURE, UV + vec2(outLineSize,  -outLineSize)).a != 0.0) 
-            tcol = outLineColor;
-    }
-
-
-    COLOR = vec4(tcol.rgb, tcol.a);
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+    float avg = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
+    COLOR.rgb = vec3(avg);
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/outLineSize = 0.01
-shader_param/alpha = 0.0
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 2 )
-shader_param/outLineSize = 0.01
-shader_param/alpha = 0.0
+[sub_resource type="DynamicFont" id=13]
+size = 120
+use_mipmaps = true
+font_data = ExtResource( 36 )
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
 render_mode blend_mix;
 
@@ -109,16 +91,55 @@ void fragment()
     COLOR = vec4(tcol.rgb, tcol.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
-shader = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 4 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="StreamTexture" id=7]
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 4 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform float outLineSize = 0.02;
+uniform float alpha  = 0;
+
+void fragment()
+{
+	vec4 outLineColor = vec4(1.0, 1.0, 1.0, alpha);
+    vec4 tcol = texture(TEXTURE, UV);
+
+    if (tcol.a == 0.0)
+    {
+        if (texture(TEXTURE, UV + vec2(0.0,          outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(0.0,         -outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, 0.0)).a          != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(-outLineSize, -outLineSize)).a != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  outLineSize)).a  != 0.0 ||
+            texture(TEXTURE, UV + vec2(outLineSize,  -outLineSize)).a != 0.0) 
+            tcol = outLineColor;
+    }
+
+
+    COLOR = vec4(tcol.rgb, tcol.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 7 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="StreamTexture" id=9]
 flags = 1
 load_path = "res://.import/QP_07_Button_round_blue.png-3c52e40414a3a77bda2ccc70dcbdd2a8.stex"
 
-[sub_resource type="GDScript" id=8]
+[sub_resource type="GDScript" id=10]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -143,12 +164,12 @@ func _on_ButtonControl_mouse_exited() -> void:
 	selected = false
 "
 
-[sub_resource type="ShaderMaterial" id=9]
-shader = SubResource( 5 )
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 7 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=12]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -183,19 +204,19 @@ script = ExtResource( 19 )
 [node name="ItemPosition" type="Node" parent="."]
 
 [node name="ItemWaypoint1" type="Position2D" parent="ItemPosition"]
-position = Vector2( 386, 726 )
+position = Vector2( 703.839, 719.119 )
 
 [node name="ItemWaypoint2" type="Position2D" parent="ItemPosition"]
-position = Vector2( 538, 726 )
+position = Vector2( 538, 717 )
 
 [node name="ItemWaypoint3" type="Position2D" parent="ItemPosition"]
-position = Vector2( 714, 718 )
+position = Vector2( 891.99, 713.238 )
 
 [node name="ItemWaypoint4" type="Position2D" parent="ItemPosition"]
-position = Vector2( 898, 718 )
+position = Vector2( 364.031, 728.07 )
 
 [node name="ItemWaypoint5" type="Position2D" parent="ItemPosition"]
-position = Vector2( 1082, 710 )
+position = Vector2( 1082, 701 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
@@ -339,21 +360,90 @@ anchor_left = 0.103
 anchor_top = 0.039
 anchor_right = 0.866
 anchor_bottom = 0.839
-margin_left = 12.995
+margin_left = 19.995
 margin_top = -8.062
-margin_right = 5.88995
-margin_bottom = 7.53796
+margin_right = 12.89
+margin_bottom = 15.538
 rect_rotation = -1.39665
 rect_pivot_offset = Vector2( 328, 544 )
-custom_constants/margin_right = 40
+custom_constants/margin_right = 20
 custom_constants/margin_top = 20
-custom_constants/margin_left = 40
-custom_constants/margin_bottom = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tween" type="Tween" parent="CanvasLayer/TabletPopup"]
+
+[node name="SheetPopup" type="Popup" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 37 )
+
+[node name="Background" type="ColorRect" parent="CanvasLayer/SheetPopup"]
+modulate = Color( 1, 1, 1, 0.823529 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1874.0
+margin_bottom = 1032.0
+rect_scale = Vector2( 1.0031, 1.00155 )
+color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SheetPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 575.767
+margin_top = 3.11896
+margin_right = 1310.77
+margin_bottom = 1034.12
+texture = ExtResource( 35 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="Control" parent="CanvasLayer/SheetPopup/TextureRect"]
+margin_left = 106.0
+margin_top = 111.0
+margin_right = 652.0
+margin_bottom = 983.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/SheetPopup/TextureRect/MarginContainer"]
+material = SubResource( 3 )
+margin_left = -86.7296
+margin_top = -110.325
+margin_right = 623.27
+margin_bottom = 824.675
+rect_rotation = 1.36502
+rect_scale = Vector2( 1.03845, 1.03796 )
+expand = true
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/SheetPopup/TextureRect/MarginContainer"]
+margin_left = 4.39789
+margin_top = 39.0295
+margin_right = 495.398
+margin_bottom = 295.029
+rect_rotation = -8.21343
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_constants/line_spacing = -80
+text = "ALWAYS
+REJECT"
+align = 1
+valign = 1
+
+[node name="Tween" type="Tween" parent="CanvasLayer/SheetPopup"]
 
 [node name="Desk" type="Sprite" parent="."]
 position = Vector2( 752, 540 )
@@ -393,7 +483,7 @@ __meta__ = {
 [node name="Tablet" type="Node2D" parent="."]
 
 [node name="TabletSprite" type="Sprite" parent="Tablet"]
-material = SubResource( 3 )
+material = SubResource( 5 )
 position = Vector2( 353, 928 )
 texture = ExtResource( 7 )
 script = ExtResource( 16 )
@@ -409,9 +499,10 @@ __meta__ = {
 }
 
 [node name="Sheet" type="Node2D" parent="."]
+position = Vector2( 600.304, -451.172 )
 
 [node name="SheetSprite" type="Sprite" parent="Sheet"]
-material = SubResource( 4 )
+material = SubResource( 6 )
 position = Vector2( 633, 904 )
 texture = ExtResource( 15 )
 script = ExtResource( 18 )
@@ -441,15 +532,27 @@ __meta__ = {
 [node name="Margin" type="MarginContainer" parent="Monitor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -39.0
+margin_left = -6.99634
+margin_top = -3.90555
+margin_right = -45.9963
+margin_bottom = -3.90555
 rect_scale = Vector2( 1.05584, 1.03276 )
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QuestGrid" type="GridContainer" parent="Monitor/Margin"]
-margin_right = 805.0
-margin_bottom = 207.0
+[node name="ScrollContainer" type="ScrollContainer" parent="Monitor/Margin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 795.0
+margin_bottom = 197.0
+scroll_horizontal_enabled = false
+
+[node name="QuestGrid" type="GridContainer" parent="Monitor/Margin/ScrollContainer"]
 columns = 2
 
 [node name="Waypoints" type="Node" parent="."]
@@ -461,7 +564,7 @@ position = Vector2( 872, 672 )
 position = Vector2( 963.186, 1304 )
 
 [node name="DoorWaypoint" type="Position2D" parent="Waypoints"]
-position = Vector2( 546.761, 712 )
+position = Vector2( 550.999, 726.833 )
 
 [node name="CharacterManager" type="Node" parent="."]
 script = ExtResource( 14 )
@@ -472,9 +575,9 @@ script = ExtResource( 14 )
 position = Vector2( 161, 856 )
 
 [node name="Sprite" type="Sprite" parent="ButtonDoor"]
-material = SubResource( 6 )
-texture = SubResource( 7 )
-script = SubResource( 8 )
+material = SubResource( 8 )
+texture = SubResource( 9 )
+script = SubResource( 10 )
 
 [node name="ButtonControl" type="Control" parent="ButtonDoor"]
 margin_left = -32.0
@@ -490,9 +593,9 @@ __meta__ = {
 position = Vector2( 1297, 824 )
 
 [node name="Sprite" type="Sprite" parent="AcceptButton"]
-material = SubResource( 9 )
+material = SubResource( 11 )
 texture = ExtResource( 24 )
-script = SubResource( 10 )
+script = SubResource( 12 )
 
 [node name="AcceptButtonControl" type="Control" parent="AcceptButton"]
 margin_left = -32.0
@@ -526,10 +629,12 @@ __meta__ = {
 position = Vector2( 1785, 664 )
 rotation = 1.57079
 script = ExtResource( 33 )
+small = ExtResource( 34 )
+largest = ExtResource( 32 )
 
 [node name="Mount" type="Sprite" parent="ErrorMonitor"]
-position = Vector2( 151.997, 1256 )
-rotation = -3.14159
+position = Vector2( -568.036, 1271.99 )
+scale = Vector2( 0.95, -0.95 )
 texture = ExtResource( 31 )
 
 [node name="Monitor" type="Sprite" parent="ErrorMonitor"]
@@ -544,6 +649,7 @@ margin_top = 1672.0
 margin_right = -96.0037
 margin_bottom = 1836.0
 rect_rotation = -91.4818
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 32 )
 custom_colors/font_color = Color( 0.65098, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
@@ -551,42 +657,39 @@ custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "0"
 align = 1
 valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" parent="ErrorMonitor" instance=ExtResource( 8 )]
+
+[node name="ColorRect" parent="ErrorMonitor/CanvasLayer" index="0"]
+margin_left = -1172.19
+margin_top = -19.4448
+margin_right = -1397.39
+margin_bottom = -450.245
+rect_rotation = 87.9651
+
+[node name="Timer" type="Timer" parent="ErrorMonitor"]
+wait_time = 2.0
 
 [node name="Scanner" type="Node2D" parent="."]
 position = Vector2( 33, 0 )
 script = ExtResource( 25 )
 
 [node name="BackMonitor" type="Sprite" parent="Scanner"]
-position = Vector2( 1629.42, 718.122 )
+position = Vector2( 1623.59, 706.871 )
 rotation = 1.57079
-scale = Vector2( 0.497978, 0.477555 )
+scale = Vector2( 1.16495, 0.524869 )
 texture = ExtResource( 28 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Scanner"]
-layer = 3
-
-[node name="ColorRect" type="ColorRect" parent="Scanner/CanvasLayer"]
-material = ExtResource( 8 )
-anchor_left = 0.758
-anchor_top = 0.378
-anchor_right = 0.968
-anchor_bottom = 0.938
-margin_left = 402.64
-margin_top = -0.240021
-margin_right = 604.44
-margin_bottom = -203.04
-rect_rotation = 89.9999
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="CanvasLayer" parent="Scanner" instance=ExtResource( 8 )]
 
 [node name="MaskLight" type="Light2D" parent="Scanner"]
-position = Vector2( 1624, 712 )
+position = Vector2( 1622.88, 712.005 )
 rotation = -0.00451159
-scale = Vector2( 6.18941, 9.52413 )
+scale = Vector2( 6.15435, 9.52413 )
 z_index = 5
 texture = ExtResource( 29 )
 mode = 2
@@ -597,23 +700,26 @@ shadow_item_cull_mask = 2
 layer = 4
 
 [node name="Border" type="Sprite" parent="Scanner/CanvasLayer2"]
-position = Vector2( 1658, 710 )
+position = Vector2( 1651, 712.5 )
 rotation = 1.57079
-scale = Vector2( 0.486, 0.467 )
+scale = Vector2( 1.13381, 0.520299 )
 z_index = 20
 texture = ExtResource( 26 )
+[connection signal="new_char_to_avoid" from="." to="Sheet/SheetSprite" method="_on_Main_new_char_to_avoid"]
+[connection signal="new_char_to_avoid" from="." to="CanvasLayer/SheetPopup" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_error" from="." to="ErrorMonitor" method="_on_Main_new_error"]
-[connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
 [connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
-[connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
 [connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
-[connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
+[connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="sheet_open" from="PopupManager" to="CanvasLayer/SheetPopup" method="_on_PopupManager_sheet_open"]
 [connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
+[connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
@@ -633,3 +739,6 @@ texture = ExtResource( 26 )
 [connection signal="clicked" from="RejectButton/RejectButtonControl" to="." method="_on_RejectButtonControl_clicked"]
 [connection signal="mouse_entered" from="RejectButton/RejectButtonControl" to="RejectButton/Sprite" method="_on_ButtonControl_mouse_entered"]
 [connection signal="mouse_exited" from="RejectButton/RejectButtonControl" to="RejectButton/Sprite" method="_on_ButtonControl_mouse_exited"]
+[connection signal="timeout" from="ErrorMonitor/Timer" to="ErrorMonitor" method="_on_Timer_timeout"]
+
+[editable path="ErrorMonitor/CanvasLayer"]

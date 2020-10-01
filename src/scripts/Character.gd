@@ -10,20 +10,34 @@ var _underWaypoint: Vector2
 
 var quest : Quest
 
-signal end_transition
+var max_timer : float = 0
 
-func initialize(completeName: String, doorWay: Vector2, deskWay: Vector2, underWay: Vector2):
+signal end_transition
+signal wait_time_ended
+
+func initialize(completeName: String, doorWay: Vector2, deskWay: Vector2, underWay: Vector2, max_timer : float):
 	self._name = completeName;
 	self._doorWaypoint = doorWay
 	self._deskWaypoint = deskWay
 	self._underWaypoint = underWay
+	
+	self.max_timer = max_timer
 	
 	$Name.text = completeName
 
 
 func _ready():
 	self.visible = false
-	randomize()
+
+func start_timer(seconds):
+	$TextureProgress.visible = true
+	$Timer.start(seconds)
+	$TextureProgress.max_value = seconds
+	
+func _process(delta: float) -> void:
+	var seconds_elapsed = max_timer - $Timer.time_left
+	$TextureProgress.value = seconds_elapsed
+	
 
 func show_character() -> bool:
 	if self.visible:
@@ -91,7 +105,10 @@ func pick_quest(level : int) -> Quest:
 	quest = QuestLoader.choose_quest(level)
 	
 	if randi() % 2:
-		print("p")
 		quest.has_error = true
 	
 	return quest
+
+
+func _on_Timer_timeout() -> void:
+	emit_signal("wait_time_ended")

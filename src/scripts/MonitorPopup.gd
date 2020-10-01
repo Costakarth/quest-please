@@ -8,7 +8,7 @@ onready var quest_name : Label = $Texture/Margin/VBoxContainer/Name
 onready var quest_description: RichTextLabel = $Texture/Margin/VBoxContainer/Description
 onready var quest_items : HBoxContainer = $Texture/Margin/VBoxContainer/Items
 onready var tablet : TextureRect = $Texture
-onready var popup_manager = get_node("../PopupManager")
+onready var popup_manager = get_node("../../PopupManager")
 
 onready var original_position : Vector2 = tablet.rect_position
 
@@ -19,10 +19,10 @@ func _quest_clicked(quest):
 	Util.delete_children_from_node(quest_items)
 	
 	for item in quest.items_required:
-			var monitor_item_instance = monitor_item.instance()
-			monitor_item_instance.item = item
-			monitor_item_instance.connect("clicked", popup_manager, "_on_item_clicked")
-			quest_items.add_child(monitor_item_instance)
+		var monitor_item_instance = monitor_item.instance()
+		monitor_item_instance.item = item
+		monitor_item_instance.connect("clicked", popup_manager, "_on_item_clicked")
+		quest_items.add_child(monitor_item_instance)
 	
 	popup()
 	

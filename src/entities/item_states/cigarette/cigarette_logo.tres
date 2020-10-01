@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://src/entities/item_state.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/QP_I_Cigarette_02_err_logo_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/QP_I_Cigarette_02_err_logo_01.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+error_type = 4
+texture_array = [ ExtResource( 3 ), ExtResource( 2 ) ]
+difficulty = 3

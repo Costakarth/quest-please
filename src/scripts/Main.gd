@@ -3,12 +3,19 @@ extends Node2D
 const Util = preload("res://src/scripts/commons/util.gd")
 
 signal new_error
+signal new_char_to_avoid
 
 export(int) var level = 1
+export(int) var max_level = 2
 
+export(int) var characters_done = 0
+
+export(int) var number_chars_new_reject = 3
+export(int) var number_chars_new_level = 3
+export var max_timer = 20
 export(int) var error_qnty = 0
 export(int) var max_error_qnty = 3
-onready var quest_grid : GridContainer = $Monitor/Margin/QuestGrid
+onready var quest_grid : GridContainer = $Monitor/Margin/ScrollContainer/QuestGrid
 onready var popup_manager = $PopupManager
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
 onready var quest_item = preload("res://src/scenes/QuestItem.tscn")
@@ -16,16 +23,20 @@ onready var CharacterManager = $CharacterManager
 onready var itemContainer = $ItemContainer
 
 var character : Character = null
+var character_type_to_reject : CharacterType = null
 
 func _ready() -> void:
 	randomize()
 	_populate_quest_board(level)
 	CharacterManager.initialize($Waypoints/DoorWaypoint.position, 
 		$Waypoints/FrontDeskWaypoint.position,
-		$Waypoints/UnderDeskWaypoint.position)
+		$Waypoints/UnderDeskWaypoint.position,
+		max_timer)
+	_new_char_to_avoid()
 				
 
 func _on_end_transition():
+	character.start_timer(max_timer)
 	var quest : Quest = character.quest
 				
 	var items = quest.items_required
@@ -33,16 +44,23 @@ func _on_end_transition():
 	var error_index
 	
 	if quest.has_error:
-		error_index = randi() % items.size() +1
+		error_index = randi() % items.size() + 1
+		
+	if character._type == character_type_to_reject:
+		error_index = null
+		quest.error = "NOT REJECTED"
 
 	var index = 1
-	for item in items:
+	for it in items:
+		var item : Item = it
 		var quest_item_instance = quest_item.instance()
 		quest_item_instance.visible = false
 		quest_item_instance.get_child(0).texture = item.texture
 		if index == error_index:
-			quest_item_instance.get_child(1).texture = item.texture_worn
-			quest.error = "The object was deteriorated."
+			var item_state : ItemState = item.get_random_item_state_from_level(level)
+			var texture : Texture = item_state.texture_array[randi() % item_state.texture_array.size()]
+			quest_item_instance.get_child(1).texture = texture
+			quest.error = item_state.ErrorType.keys()[item_state.error_type]
 		else:
 			quest_item_instance.get_child(1).texture = item.texture_detailed
 		
@@ -72,33 +90,64 @@ func _on_ButtonControl_clicked() -> void:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$BGDoorClose.visible = true
 		character.pick_quest(level)
-
+		
 		character.connect("end_transition", self, "_on_end_transition")
+		character.connect("wait_time_ended", self, "_on_wait_time_ended")
 
 
 func _on_AcceptButtonControl_clicked() -> void:
 	if character.quest.has_error:
-		_check_errors()
+		_check_errors(character.quest)
 	Util.delete_children_from_node(itemContainer)
 	character.hideCharacter()
 	yield(get_tree().create_timer(0.5), "timeout")
 	$BGDoorClose.visible = false
 	yield(get_tree().create_timer(0.5), "timeout")
 	$BGDoorClose.visible = true
+	_char_done()
 	
 
 func _on_RejectButtonControl_clicked() -> void:
 	if !character.quest.has_error:
-		_check_errors()
+		_check_errors(character.quest)
 	Util.delete_children_from_node(itemContainer)
 	character.drop_character()
 	yield(get_tree().create_timer(0.5), "timeout")
 	character.queue_free()
+	_char_done()
+	
+	
+func _on_wait_time_ended():
+	var fake_quest : = Quest.new()
+	fake_quest.has_error = 1
+	fake_quest.error = "WAIT TIME ENDED"
+	_check_errors(fake_quest)
+	Util.delete_children_from_node(itemContainer)
+	character.hideCharacter()
+	yield(get_tree().create_timer(0.5), "timeout")
+	$BGDoorClose.visible = false
+	yield(get_tree().create_timer(0.5), "timeout")
+	$BGDoorClose.visible = true
+	_char_done()
+
+func _char_done():
+	characters_done = characters_done + 1
+	if characters_done % number_chars_new_level == 0:
+		if level > max_level:
+			get_tree().change_scene("res://Intro.tscn")
+		level = level + 1
+		_populate_quest_board(level)
+	if characters_done % number_chars_new_reject == 0:
+		_new_char_to_avoid()
 
 
-func _check_errors():
+func _new_char_to_avoid():
+	character_type_to_reject = CharacterLoader.get_character_type()
+	emit_signal("new_char_to_avoid", character_type_to_reject)
+	
+func _check_errors(quest : Quest):
 	error_qnty = error_qnty + 1
-	emit_signal("new_error")
+	emit_signal("new_error", quest)
+	yield(get_tree().create_timer(0.5), "timeout")
 	if error_qnty >= max_error_qnty:
-		SceneManager.losing_reason = character.quest.error
 		get_tree().change_scene("res://Outro.tscn")

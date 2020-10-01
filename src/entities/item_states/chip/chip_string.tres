@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://src/entities/item_state.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_err_string_02.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_err_string_03.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_err_string_04.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_err_string_01.png" type="Texture" id=5]
+
+[resource]
+script = ExtResource( 1 )
+error_type = 2
+texture_array = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+difficulty = 2

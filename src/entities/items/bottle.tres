@@ -1,14 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/item.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/QP_I_Alcohol_04_little.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/QP_I_Alcohol_04.png" type="Texture" id=3]
-[ext_resource path="res://assets/textures/QP_I_Alcohol_04_worn.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/item_states/bottle/bottle_color.tres" type="Resource" id=4]
+[ext_resource path="res://src/entities/item_states/bottle/bottle_broken.tres" type="Resource" id=5]
+[ext_resource path="res://src/entities/item_states/bottle/bottle_string.tres" type="Resource" id=6]
+[ext_resource path="res://src/entities/item_states/bottle/bottle_worn.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 name = "OldPremium Barley Whiskey"
-description = ""
+description = "This barley whiskey shows some maple syrup and honey sweetness, but its character comes from savory notes of earthiness and wet leaves.
+An old world legacy."
 texture = ExtResource( 2 )
 texture_detailed = ExtResource( 3 )
-texture_worn = ExtResource( 4 )
+item_states = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ]

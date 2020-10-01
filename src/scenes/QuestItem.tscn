@@ -12,6 +12,7 @@ light_mode = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
 z_index = -1
 
 [node name="BigSprite" type="Sprite" parent="."]

@@ -1,14 +1,18 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/entities/item.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures/QP_I_Chip_01_worn.png" type="Texture" id=2]
+[ext_resource path="res://src/entities/item_states/chip/chip_worn.tres" type="Resource" id=2]
 [ext_resource path="res://assets/textures/QP_I_Chip_01_small.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/QP_I_Chip_01.png" type="Texture" id=4]
+[ext_resource path="res://src/entities/item_states/chip/chip_color.tres" type="Resource" id=5]
+[ext_resource path="res://src/entities/item_states/chip/chip_string.tres" type="Resource" id=6]
+[ext_resource path="res://src/entities/item_states/chip/chip_broken.tres" type="Resource" id=7]
 
 [resource]
 script = ExtResource( 1 )
 name = "Tonkatsu Memory Chip"
-description = ""
+description = "This neo-Asian production chip provides a computing power capable of launching a missile perfectly into your worst enemy's bathroom or running Crysis at maximum settings.
+Inedible."
 texture = ExtResource( 3 )
 texture_detailed = ExtResource( 4 )
-texture_worn = ExtResource( 2 )
+item_states = [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 2 ) ]
