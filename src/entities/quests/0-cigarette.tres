@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Stressed out"
 description = "No money, no job, no connection, no data... I'm really flatted. What about a packet of CyanHaze?"
 items_required = [ ExtResource( 2 ) ]
-level = 1
+level = 0
 has_error = false
 error = ""

@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Memory"
 description = "Looking for some pretty rare damn thing, nowadays. I need one old Tonkatsu Memory chip. Can you give bring it to me?"
 items_required = [ ExtResource( 2 ) ]
-level = 1
+level = 0
 has_error = false
 error = ""

@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Eastern winds"
 description = "Yes it's risky, yes it's rewarding, but taking five packets over the fence should do. Who doesn't love little shivers down the spine every now and then?"
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
-level = 3
+level = 4
 has_error = false
 error = ""

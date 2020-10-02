@@ -41,7 +41,6 @@ func _on_item_clicked(item : Item):
 	var details_mode = item_details_mode.instance()
 	$TextureRect/MarginContainer.add_child(details_mode)
 	
-	var vbox_container = $TextureRect/MarginContainer/VBoxContainer
 	var name_label : Label = $TextureRect/MarginContainer/VBoxContainer/MarginContainer/Name
 	var description : RichTextLabel = $TextureRect/MarginContainer/VBoxContainer/Description
 	var miniature : TextureRect = $TextureRect/MarginContainer/VBoxContainer/Miniature/Image

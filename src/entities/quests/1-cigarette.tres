@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Corporation"
 description = "Not a secret that Tonkatsu is a demanding company. I need two packets of cigarettes to have a break with two colleagues of mine. Yeah, two packets, three people."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
-level = 2
+level = 1
 has_error = false
 error = ""

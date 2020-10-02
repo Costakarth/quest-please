@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "I want to throw a party"
 description = "I'll be pretty straightforward. An important corporation's willing to pay for five Tonkatsu Memory chips. Maybe coming this side of the fence is a little unfair, since I work for this other corporation but... Find those chips."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
-level = 3
+level = 4
 has_error = false
 error = ""

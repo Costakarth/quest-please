@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Competition"
 description = "Tomorrow I have a race. Nothing special, but I really... Really... Need a dose of MindBooster. Yes, the drug. Just one. Thanks."
 items_required = [ ExtResource( 2 ) ]
-level = 1
+level = 0
 has_error = false
 error = ""

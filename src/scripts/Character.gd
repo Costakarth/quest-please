@@ -11,6 +11,7 @@ var _underWaypoint: Vector2
 var quest : Quest
 
 var max_timer : float = 0
+var timer_started : bool = false
 
 signal end_transition
 signal wait_time_ended
@@ -29,14 +30,17 @@ func initialize(completeName: String, doorWay: Vector2, deskWay: Vector2, underW
 func _ready():
 	self.visible = false
 
+
 func start_timer(seconds):
-	$TextureProgress.visible = true
-	$Timer.start(seconds)
 	$TextureProgress.max_value = seconds
+	$Timer.start(seconds)
+	timer_started = true
+	$TextureProgress.visible = true
 	
 func _process(delta: float) -> void:
-	var seconds_elapsed = max_timer - $Timer.time_left
-	$TextureProgress.value = seconds_elapsed
+	if timer_started:
+		var seconds_elapsed = max_timer - $Timer.time_left
+		$TextureProgress.value = seconds_elapsed
 	
 
 func show_character() -> bool:

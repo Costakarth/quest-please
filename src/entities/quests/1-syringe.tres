@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Back to back"
 description = "Last time I won and... This time the stake is really high. So, I need two of those syringe. Sure you'll be able to give me what I want."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
-level = 2
+level = 1
 has_error = false
 error = ""

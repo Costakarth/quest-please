@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Ya'dda yo"
 description = "Hay there ma man. Give me fivah of those syringes. Is it tha MaindBoosta right? A-ha, right. Give it to ma."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
-level = 3
+level = 4
 has_error = false
 error = ""

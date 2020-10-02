@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Wedding needs"
 description = "Too many pictures taken, too many vids recorded. Tons of data. I really can't afford a Tonkatsu premium account. So, at the moment, I need five 512EX. REally, or my husband is going to harm himself."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
-level = 3
+level = 4
 has_error = false
 error = ""

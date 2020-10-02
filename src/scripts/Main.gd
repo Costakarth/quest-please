@@ -10,9 +10,9 @@ export(int) var max_level = 4
 
 export(int) var characters_done = 0
 
-export(int) var number_chars_new_reject = 3
-export(int) var number_chars_new_level = 1
-export var max_timer = 20
+export(int) var number_chars_new_reject = 6
+export(int) var number_chars_new_level = 10
+export var max_timer = 15
 export(int) var error_qnty = 0
 export(int) var max_error_qnty = 3
 onready var quest_grid = $Monitor/Margin/ScrollContainer/VBoxContainer
@@ -24,6 +24,9 @@ onready var itemContainer = $ItemContainer
 
 var character : Character = null
 var character_type_to_reject : CharacterType = null
+
+var accept_can_be_clicked = false
+var reject_can_be_clicked = false
 
 func _ready() -> void:
 	randomize()
@@ -85,36 +88,46 @@ func _populate_quest_board(level : int):
 
 func _on_ButtonControl_clicked() -> void:
 	if !character:
+		SoundManager.play_open_door_sound()
 		$BGDoorClose.visible = false
 		character = CharacterManager.create_character()
 		character.show_character()
 		yield(get_tree().create_timer(0.5), "timeout")
+		SoundManager.play_close_door_sound()
 		$BGDoorClose.visible = true
 		character.pick_quest(level)
 		
 		character.connect("end_transition", self, "_on_end_transition")
 		character.connect("wait_time_ended", self, "_on_wait_time_ended")
+		accept_can_be_clicked = true
+		reject_can_be_clicked = true
 
 
 func _on_AcceptButtonControl_clicked() -> void:
-	if character.quest.has_error:
-		_check_errors(character.quest)
-	Util.delete_children_from_node(itemContainer)
-	character.hideCharacter()
-	yield(get_tree().create_timer(0.5), "timeout")
-	$BGDoorClose.visible = false
-	yield(get_tree().create_timer(0.5), "timeout")
-	$BGDoorClose.visible = true
-	_char_done()
-	
+	if accept_can_be_clicked:
+		accept_can_be_clicked = false
+		if character.quest.has_error:
+			_check_errors(character.quest)
+		Util.delete_children_from_node(itemContainer)
+		character.hideCharacter()
+		SoundManager.play_open_door_sound()
+		yield(get_tree().create_timer(0.5), "timeout")
+		$BGDoorClose.visible = false
+		yield(get_tree().create_timer(0.5), "timeout")
+		SoundManager.play_close_door_sound()
+		$BGDoorClose.visible = true
+		_char_done()
+
 
 func _on_RejectButtonControl_clicked() -> void:
-	if !character.quest.has_error:
-		_check_errors(character.quest)
-	Util.delete_children_from_node(itemContainer)
-	yield(get_tree().create_timer(0.5), "timeout")
-	character.queue_free()
-	_char_done()
+	if reject_can_be_clicked:
+		reject_can_be_clicked = false
+		if !character.quest.has_error:
+			_check_errors(character.quest)
+		Util.delete_children_from_node(itemContainer)
+		yield(get_tree().create_timer(0.5), "timeout")
+		character.queue_free()
+		_char_done()
 	
 	
 func _on_wait_time_ended():
@@ -124,8 +137,10 @@ func _on_wait_time_ended():
 	_check_errors(fake_quest)
 	Util.delete_children_from_node(itemContainer)
 	character.hideCharacter()
+	SoundManager.play_open_door_sound()
 	yield(get_tree().create_timer(0.5), "timeout")
 	$BGDoorClose.visible = false
+	SoundManager.play_close_door_sound()
 	yield(get_tree().create_timer(0.5), "timeout")
 	$BGDoorClose.visible = true
 	_char_done()

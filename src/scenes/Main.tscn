@@ -299,7 +299,6 @@ align = 1
 valign = 1
 
 [node name="Description" type="RichTextLabel" parent="CanvasLayer/MonitorPopup/Texture/Margin/VBoxContainer"]
-visible = false
 margin_top = 210.0
 margin_right = 1137.0
 margin_bottom = 610.0
@@ -541,18 +540,20 @@ margin_top = 9.0
 margin_right = -57.0
 margin_bottom = -12.0
 rect_scale = Vector2( 1.05584, 1.03276 )
+custom_constants/margin_left = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Monitor/Margin"]
+margin_left = 15.0
 margin_right = 786.0
-margin_bottom = 187.0
+margin_bottom = 186.0
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Monitor/Margin/ScrollContainer"]
-margin_right = 786.0
-margin_bottom = 187.0
+margin_right = 771.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -716,16 +717,16 @@ texture = ExtResource( 26 )
 [connection signal="sheet_open" from="PopupManager" to="CanvasLayer/SheetPopup" method="_on_PopupManager_sheet_open"]
 [connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
-[connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
-[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="clicked" from="CanvasLayer/MonitorPopup/Background" to="CanvasLayer/MonitorPopup" method="_on_Background_clicked"]
-[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="CanvasLayer/TabletPopup" method="_on_Popup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
 [connection signal="clicked" from="CanvasLayer/TabletPopup/Background" to="CanvasLayer/TabletPopup" method="_on_Background_clicked"]
 [connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
 [connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]

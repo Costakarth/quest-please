@@ -19,7 +19,7 @@ func _ready() -> void:
 	label.text = intro_text[index]
 
 
-func _on_Enter_clicked() -> void:
+func _on_Control_clicked() -> void:
 	index = index + 1
 	
 	if index >= intro_text.size():

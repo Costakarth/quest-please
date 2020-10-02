@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "I want to throw a party"
 description = "Credits incoming, people drinking. Nothing better for a tuesday morning. Yeah! Let's go! Give me five of those Old Premium Barley!"
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
-level = 3
+level = 4
 has_error = false
 error = ""

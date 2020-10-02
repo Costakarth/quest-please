@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "I am really thirsty"
 description = "Yeah... Last time my wife found me with the bottle of Old Barley and she almost left me. But it's so good. Really good. Please, provide me two more, one to forget it and one to taste it again."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
-level = 2
+level = 1
 has_error = false
 error = ""

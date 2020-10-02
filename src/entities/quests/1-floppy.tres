@@ -8,6 +8,6 @@ script = ExtResource( 1 )
 name = "Data is important"
 description = "Well, going back to office but in the meanwhile: I need two 512EX for my business, can you find me those two? Yeah, I need two of them. Yeah, business things."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
-level = 2
+level = 1
 has_error = false
 error = ""

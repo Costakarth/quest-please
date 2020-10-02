@@ -6,7 +6,7 @@ func _on_PopupManager_quest_close() -> void:
 	$CanvasLayer/ColorRect.visible = true
 
 
-func _on_PopupManager_quest_open(quest) -> void:
+func _on_PopupManager_quest_open(_quest) -> void:
 	$CanvasLayer/ColorRect.visible = false
 
 
