@@ -1,4 +1,4 @@
-extends Container
+extends Control
 
 onready var label = $Label
 var quest

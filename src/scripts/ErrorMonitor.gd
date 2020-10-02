@@ -13,7 +13,7 @@ func _on_Main_new_error(quest : Quest) -> void:
 	if !quest.has_error:
 		$Label.text = "WRONG REJECT"
 	else:
-		$Label.text = quest.error
+		$Label.text = quest.error.replacen("_", " ")
 	$Label.add_font_override("font",small)
 	$Timer.start(timer)
 

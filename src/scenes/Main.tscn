@@ -282,7 +282,7 @@ __meta__ = {
 margin_left = 50.0
 margin_top = 10.0
 margin_right = 1187.0
-margin_bottom = 830.0
+margin_bottom = 819.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -299,10 +299,11 @@ align = 1
 valign = 1
 
 [node name="Description" type="RichTextLabel" parent="CanvasLayer/MonitorPopup/Texture/Margin/VBoxContainer"]
+visible = false
 margin_top = 210.0
 margin_right = 1137.0
 margin_bottom = 610.0
-rect_min_size = Vector2( 0, 400 )
+rect_min_size = Vector2( 0, 350 )
 custom_fonts/normal_font = SubResource( 1 )
 meta_underlined = false
 text = "sdfsfsdfsdsdadasdasdsa
@@ -535,28 +536,25 @@ __meta__ = {
 [node name="Margin" type="MarginContainer" parent="Monitor"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -6.99634
-margin_top = -3.90555
-margin_right = -45.9963
-margin_bottom = -3.90555
+margin_left = 1.0
+margin_top = 9.0
+margin_right = -57.0
+margin_bottom = -12.0
 rect_scale = Vector2( 1.05584, 1.03276 )
-custom_constants/margin_right = 10
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Monitor/Margin"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 795.0
-margin_bottom = 197.0
+margin_right = 786.0
+margin_bottom = 187.0
 scroll_horizontal_enabled = false
 
-[node name="QuestGrid" type="GridContainer" parent="Monitor/Margin/ScrollContainer"]
-columns = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="Monitor/Margin/ScrollContainer"]
+margin_right = 786.0
+margin_bottom = 187.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Waypoints" type="Node" parent="."]
 
@@ -708,21 +706,21 @@ rotation = 1.57079
 scale = Vector2( 1.13381, 0.520299 )
 z_index = 20
 texture = ExtResource( 26 )
-[connection signal="new_char_to_avoid" from="." to="Sheet/SheetSprite" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_char_to_avoid" from="." to="CanvasLayer/SheetPopup" method="_on_Main_new_char_to_avoid"]
+[connection signal="new_char_to_avoid" from="." to="Sheet/SheetSprite" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_error" from="." to="ErrorMonitor" method="_on_Main_new_error"]
-[connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
 [connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
-[connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
+[connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
 [connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
 [connection signal="sheet_open" from="PopupManager" to="CanvasLayer/SheetPopup" method="_on_PopupManager_sheet_open"]
-[connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
+[connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="CanvasLayer/MonitorPopup/Background" to="CanvasLayer/MonitorPopup" method="_on_Background_clicked"]

@@ -4,23 +4,18 @@ const Util = preload("res://src/scripts/commons/util.gd")
 
 var quest_path = "res://src/entities/quests/"
 
-var quests := {}
-
-
-func _init() -> void:
-	var quests_list = Util.load_resources_from_directory(quest_path)
-	_elaborate_quests(quests_list)
-	
 	
 func choose_quest(level : int) -> Quest:
-	var rand_index : int = randi() % quests[level].size()
+	var quest_list = get_all_quests_until_level(level)
+	var rand_index : int = randi() % quest_list.size()
 	
-	return quests[level][rand_index]
+	return quest_list[rand_index]
 	
-	
-func _elaborate_quests(quest_list : Array):
-	for quest in quest_list:
-		if quests.has(quest.level):
-			quests[quest.level].append(quest)
-		else:
-			quests[quest.level] = [quest]
+
+func get_all_quests_until_level(level : int) -> Array:
+	var quests_list = Util.load_resources_from_directory(quest_path)
+	var restricted_quest_list = []
+	for quest in quests_list:
+		if quest.level <= level:
+			restricted_quest_list.append(quest)
+	return restricted_quest_list

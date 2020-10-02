@@ -5,17 +5,17 @@ const Util = preload("res://src/scripts/commons/util.gd")
 signal new_error
 signal new_char_to_avoid
 
-export(int) var level = 1
-export(int) var max_level = 2
+export(int) var level = 0
+export(int) var max_level = 4
 
 export(int) var characters_done = 0
 
 export(int) var number_chars_new_reject = 3
-export(int) var number_chars_new_level = 3
+export(int) var number_chars_new_level = 1
 export var max_timer = 20
 export(int) var error_qnty = 0
 export(int) var max_error_qnty = 3
-onready var quest_grid : GridContainer = $Monitor/Margin/ScrollContainer/QuestGrid
+onready var quest_grid = $Monitor/Margin/ScrollContainer/VBoxContainer
 onready var popup_manager = $PopupManager
 onready var quest_container = preload("res://src/scenes/QuestBox.tscn")
 onready var quest_item = preload("res://src/scenes/QuestItem.tscn")
@@ -74,7 +74,8 @@ func _on_end_transition():
 
 
 func _populate_quest_board(level : int):
-	for quest in QuestLoader.quests[level]:
+	Util.delete_children_from_node(quest_grid)
+	for quest in QuestLoader.get_all_quests_until_level(level):
 		var quest_container_instance = quest_container.instance()
 		quest_container_instance.quest = quest
 		quest_container_instance.connect("clicked", popup_manager, "_on_quest_clicked")
@@ -111,7 +112,6 @@ func _on_RejectButtonControl_clicked() -> void:
 	if !character.quest.has_error:
 		_check_errors(character.quest)
 	Util.delete_children_from_node(itemContainer)
-	character.drop_character()
 	yield(get_tree().create_timer(0.5), "timeout")
 	character.queue_free()
 	_char_done()
@@ -129,6 +129,7 @@ func _on_wait_time_ended():
 	yield(get_tree().create_timer(0.5), "timeout")
 	$BGDoorClose.visible = true
 	_char_done()
+
 
 func _char_done():
 	characters_done = characters_done + 1
@@ -150,4 +151,4 @@ func _check_errors(quest : Quest):
 	emit_signal("new_error", quest)
 	yield(get_tree().create_timer(0.5), "timeout")
 	if error_qnty >= max_error_qnty:
-		get_tree().change_scene("res://Outro.tscn")
+		get_tree().change_scene("res://src/scenes/Outro.tscn")

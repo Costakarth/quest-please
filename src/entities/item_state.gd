@@ -3,11 +3,11 @@ class_name ItemState
 
 enum ErrorType {
 	BROKEN,
-	COLOR,
-	STRING,
+	WRONG_COLOR,
+	WRONG_LABEL,
 	WORN,
-	LOGO,
-	DRUG_COLOR,
+	WRONG_LOGO,
+	WRONG_DRUG_COLOR,
 	NOT_REJECTED
 }
 
