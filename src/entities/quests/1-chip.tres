@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/chip.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Enhancing"
+description = "When it comes to body enhancement, evertybody still mad. It's a thing. For example, I have two slots for Tonkatus Memory chips, empty. May you help me?"
+items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

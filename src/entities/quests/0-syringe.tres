@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/syringe.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Competition"
+description = "Tomorrow I have a race. Nothing special, but I really... Really... Need a dose of MindBooster. Yes, the drug. Just one. Thanks."
+items_required = [ ExtResource( 2 ) ]
+level = 1
+has_error = false
+error = ""

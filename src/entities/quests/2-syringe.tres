@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/syringe.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "A whole new world"
+description = "TRust me when I say that I know my stuff. When it comes to seek your inner beast, nothing better than a syringe of MindBooster. I have three \"customers\", so please find me three syringes."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

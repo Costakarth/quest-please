@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/items/bottle.tres" type="Resource" id=2]
+[ext_resource path="res://src/entities/items/floppy.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
-name = "Nectar of gods"
-description = "Ehi, people talks and the bar is going well. I need four extra bottles, just for tonight."
+name = "Lots of movies"
+description = "I'm in need of four 512EXs because my movie library is growing too fast. Yes, I have the optical reader at hand. Yes I need them immediately."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
 level = 3
 has_error = false

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/chip.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Memory's never enough"
+description = "I have knowledge on almost everything and my brain's about to explode. Just went to install four bays for Tonkatsu Memory chips, but the enhancer didn't have any. Can you help me?"
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 3
+has_error = false
+error = ""

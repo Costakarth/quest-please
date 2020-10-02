@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/cigarette.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Special transport"
+description = "Ok, delivering some goods over the eastern fence. Come on, everyone needs some extra money. But I'm short in cigarettes. Give me three packets of CyanHaze."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

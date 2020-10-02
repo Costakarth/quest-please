@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/syringe.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Recreation"
+description = "Sometimes I really like to chill at the park, with or without friends. Today I have 3 friends, they're waiting for me to arrive with the MindBoosters. So, give me four of that incredible drug."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 3
+has_error = false
+error = ""

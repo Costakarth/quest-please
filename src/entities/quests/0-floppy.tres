@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/floppy.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "My son research"
+description = "My son is graduating tomorrow and of course he lost everything he worked on during the last 10 years. Please, find every 512EX you can. Hope I can get the correct one."
+items_required = [ ExtResource( 2 ) ]
+level = 1
+has_error = false
+error = ""

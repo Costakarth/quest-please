@@ -1,12 +1,12 @@
 [gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
-[ext_resource path="res://src/entities/items/bottle.tres" type="Resource" id=2]
+[ext_resource path="res://src/entities/items/syringe.tres" type="Resource" id=2]
 
 [resource]
 script = ExtResource( 1 )
-name = "I want to throw a party"
-description = "Credits incoming, people drinking. Nothing better for a tuesday morning. Yeah! Let's go! Give me five of those Old Premium Barley!"
+name = "Ya'dda yo"
+description = "Hay there ma man. Give me fivah of those syringes. Is it tha MaindBoosta right? A-ha, right. Give it to ma."
 items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
 level = 3
 has_error = false

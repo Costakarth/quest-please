@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/syringe.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Back to back"
+description = "Last time I won and... This time the stake is really high. So, I need two of those syringe. Sure you'll be able to give me what I want."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

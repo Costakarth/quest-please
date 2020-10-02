@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/floppy.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Not enough space"
+description = "Look like I need some more virtual space. And yes I don't want to pu my data on the cloud system from Tonkatsu. So, give me three 512EXs, thanks."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

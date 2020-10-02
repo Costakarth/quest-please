@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource( 1 )
 name = "I am thirsty"
-description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+description = "At home I can drink nothing but water. The water Tonkatsu give to us, of course. And you know what? I'm tired. Give me a bottle of Old Barley Premium!"
 items_required = [ ExtResource( 2 ) ]
 level = 0
 has_error = false

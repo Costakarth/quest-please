@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/chip.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Customer benefits"
+description = "Growing up in the city you get used to it, but three new customers from over the fence needs expansion modules, the Tonkatsu ones."
+items_required = [ ExtResource( 2 ), ExtResource( 2 ), ExtResource( 2 ) ]
+level = 2
+has_error = false
+error = ""

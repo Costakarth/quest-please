@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://src/entities/quest.gd" type="Script" id=1]
+[ext_resource path="res://src/entities/items/cigarette.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+name = "Stressed out"
+description = "No money, no job, no connection, no data... I'm really flatted. What about a packet of CyanHaze?"
+items_required = [ ExtResource( 2 ) ]
+level = 1
+has_error = false
+error = ""
