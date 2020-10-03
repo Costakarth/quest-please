@@ -177,7 +177,7 @@ shader = SubResource( 8 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=13]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -202,12 +202,12 @@ func _on_ButtonControl_mouse_exited() -> void:
 	selected = false
 "
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id=14]
 shader = SubResource( 8 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="GDScript" id=16]
+[sub_resource type="GDScript" id=15]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -638,7 +638,7 @@ position = Vector2( 166.339, 1009.52 )
 [node name="Sprite" type="Sprite" parent="AudioButton"]
 material = SubResource( 12 )
 texture = ExtResource( 45 )
-script = SubResource( 14 )
+script = SubResource( 13 )
 
 [node name="AudioButtonControl" type="Control" parent="AudioButton"]
 margin_left = -32.0
@@ -663,9 +663,9 @@ texture = ExtResource( 39 )
 position = Vector2( 1297, 824 )
 
 [node name="Sprite" type="Sprite" parent="AcceptButton"]
-material = SubResource( 15 )
+material = SubResource( 14 )
 texture = ExtResource( 24 )
-script = SubResource( 16 )
+script = SubResource( 15 )
 
 [node name="AcceptButtonControl" type="Control" parent="AcceptButton"]
 margin_left = -47.0
@@ -785,8 +785,8 @@ rotation = 1.57079
 scale = Vector2( 1.13381, 0.520299 )
 z_index = 20
 texture = ExtResource( 26 )
-[connection signal="new_char_to_avoid" from="." to="CanvasLayer/SheetPopup" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_char_to_avoid" from="." to="Sheet/SheetSprite" method="_on_Main_new_char_to_avoid"]
+[connection signal="new_char_to_avoid" from="." to="CanvasLayer/SheetPopup" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_error" from="." to="ErrorMonitor" method="_on_Main_new_error"]
 [connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
 [connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
@@ -795,8 +795,8 @@ texture = ExtResource( 26 )
 [connection signal="sheet_open" from="PopupManager" to="CanvasLayer/SheetPopup" method="_on_PopupManager_sheet_open"]
 [connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
-[connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]

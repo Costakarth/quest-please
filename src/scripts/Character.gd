@@ -110,9 +110,9 @@ func get_name() -> String:
 	
 	
 func pick_quest(level : int) -> Quest:
-	quest = QuestLoader.choose_quest(level)
+	quest = QuestLoader.choose_quest_with_mix_max(level - 1, level)
 	
-	if Randomizer.get_random_integer(2):
+	if Randomizer.get_random_integer(10) > 6:
 		quest.has_error = true
 	
 	return quest

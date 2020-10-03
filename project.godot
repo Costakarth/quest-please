@@ -48,6 +48,10 @@ config/name="Quest, Please"
 run/main_scene="res://Title.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency.web=60
+
 [autoload]
 
 QuestLoader="*res://src/globals/quest_loader.gd"

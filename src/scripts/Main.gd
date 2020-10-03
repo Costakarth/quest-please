@@ -31,7 +31,7 @@ var reject_can_be_clicked = false
 
 func _ready() -> void:
 	_populate_quest_board(level)
-	CharacterManager.initialize($Waypoints/DoorWaypoint.position, 
+	CharacterManager.initialize($Waypoints/DoorWaypoint.position,
 		$Waypoints/FrontDeskWaypoint.position,
 		$Waypoints/UnderDeskWaypoint.position,
 		max_timer)
@@ -62,7 +62,7 @@ func _on_end_transition():
 		quest_item_instance.visible = false
 		quest_item_instance.get_child(0).texture = item.texture
 		if index == error_index:
-			var item_state : ItemState = item.get_random_item_state_from_level(level)
+			var item_state : ItemState = item.get_random_item_state_from_level_to_level(level, level - 2)
 			var texture : Texture = item_state.texture_array[Randomizer.get_random_integer(item_state.texture_array.size())]
 			
 			quest_item_instance.get_child(1).texture = texture
@@ -81,7 +81,7 @@ func _on_end_transition():
 
 func _populate_quest_board(level : int):
 	Util.delete_children_from_node(quest_grid)
-	for quest in QuestLoader.get_all_quests_until_level(level):
+	for quest in QuestLoader.get_all_quests_with_mix_max(level-1, level):
 		var quest_container_instance = quest_container.instance()
 		quest_container_instance.quest = quest
 		quest_container_instance.connect("clicked", popup_manager, "_on_quest_clicked")
@@ -164,10 +164,13 @@ func _char_done():
 
 
 func _new_char_to_avoid():
+	SoundManager.play_ping()
 	character_type_to_reject = CharacterLoader.get_character_type()
 	emit_signal("new_char_to_avoid", character_type_to_reject)
 	
+	
 func _check_errors(quest : Quest):
+	SoundManager.play_wrong()
 	error_qnty = error_qnty + 1
 	emit_signal("new_error", quest)
 	yield(get_tree().create_timer(0.5), "timeout")
