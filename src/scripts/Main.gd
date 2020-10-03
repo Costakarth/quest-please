@@ -11,7 +11,8 @@ export(int) var max_level = 4
 export(int) var characters_done = 0
 
 export(int) var number_chars_new_reject = 6
-export(int) var number_chars_new_level = 10
+export(int) var number_chars_new_level = 8
+
 export var max_timer = 15
 export(int) var error_qnty = 0
 export(int) var max_error_qnty = 3
@@ -29,7 +30,6 @@ var accept_can_be_clicked = false
 var reject_can_be_clicked = false
 
 func _ready() -> void:
-	randomize()
 	_populate_quest_board(level)
 	CharacterManager.initialize($Waypoints/DoorWaypoint.position, 
 		$Waypoints/FrontDeskWaypoint.position,
@@ -47,7 +47,9 @@ func _on_end_transition():
 	var error_index
 	
 	if quest.has_error:
-		error_index = randi() % items.size() + 1
+		error_index = Randomizer.get_random_integer(items.size())
+		if (error_index == 0):
+			error_index = 1
 		
 	if character._type == character_type_to_reject:
 		error_index = null
@@ -61,7 +63,8 @@ func _on_end_transition():
 		quest_item_instance.get_child(0).texture = item.texture
 		if index == error_index:
 			var item_state : ItemState = item.get_random_item_state_from_level(level)
-			var texture : Texture = item_state.texture_array[randi() % item_state.texture_array.size()]
+			var texture : Texture = item_state.texture_array[Randomizer.get_random_integer(item_state.texture_array.size())]
+			
 			quest_item_instance.get_child(1).texture = texture
 			quest.error = item_state.ErrorType.keys()[item_state.error_type]
 		else:
@@ -106,7 +109,8 @@ func _on_ButtonControl_clicked() -> void:
 func _on_AcceptButtonControl_clicked() -> void:
 	if accept_can_be_clicked:
 		accept_can_be_clicked = false
-		if character.quest.has_error:
+		var quest = character.quest
+		if quest.has_error:
 			_check_errors(character.quest)
 		Util.delete_children_from_node(itemContainer)
 		character.hideCharacter()
@@ -114,9 +118,9 @@ func _on_AcceptButtonControl_clicked() -> void:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$BGDoorClose.visible = false
 		yield(get_tree().create_timer(0.5), "timeout")
+		_char_done()
 		SoundManager.play_close_door_sound()
 		$BGDoorClose.visible = true
-		_char_done()
 
 
 func _on_RejectButtonControl_clicked() -> void:
@@ -147,11 +151,13 @@ func _on_wait_time_ended():
 
 
 func _char_done():
+	character = null
 	characters_done = characters_done + 1
 	if characters_done % number_chars_new_level == 0:
-		if level > max_level:
-			get_tree().change_scene("res://Intro.tscn")
 		level = level + 1
+		if level > max_level:
+			get_tree().change_scene("res://src/scenes/OutroWin.tscn")
+			return
 		_populate_quest_board(level)
 	if characters_done % number_chars_new_reject == 0:
 		_new_char_to_avoid()

@@ -14,12 +14,12 @@ func _init() -> void:
 	pass
 
 func get_character_type() -> CharacterType:
-	return _characters[randi() % _characters.size()];
+	return _characters[Randomizer.get_random_integer(_characters.size())];
 
 func get_character_by_class(classType) -> Character:
 	if not _characters_by_type.has(classType):
 		return null
-	return _characters[randi() % _characters_by_type[classType].size()];
+	return _characters[Randomizer.get_random_integer(_characters_by_type[classType].size())];
 
 func _generate_by_type() -> Dictionary:
 	var result := {}

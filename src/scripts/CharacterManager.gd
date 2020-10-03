@@ -26,9 +26,9 @@ func create_character() -> Character:
 	return character
 
 func _generate_name() -> String:
-	var names := ["Everett", "London", "Oz", "Marten", "Paris", "Kellen", "Derrik", "Ethan", "Everett", "Avery", "Stefan", "Zayne", "Baen", "Pascal", "Encelo"]
-	var surnames := ["Scofield", "Kerensky", "Steward", "Burcham", "Helsing", "Calder", "Tyrrell", "Nylund", "Dowe", "Smith", "Mattix", "Tindal", "Konicek"]
+	var names := ["Everett", "London", "Bruno", "Oz", "Marten", "Havana", "Paris", "Kellen", "Korrad", "Derrik", "Ethan", "Morgoth", "Everett", "Stavros","Avery", "Stefan", "Zayne", "Baen", "Pascal", "Encelo", "Ciruzz", "Urien", "Jordan"]
+	var surnames := ["Scofield", "Karbb", "Fahien", "Kerensky", "TheYellow", "Steward", "CrystalBit", "Burcham", "Helsing", "HunterMan", "Calder", "Tyrrell", "Wintermute", "Nylund", "Dowe", "Smith", "Mattix", "Tindal", "Konicek", "Albach"]
 	
-	return names[randi() % names.size()] + ' ' + surnames[randi() % surnames.size()]
+	return names[Randomizer.get_random_integer(names.size())] + ' ' + surnames[Randomizer.get_random_integer(surnames.size())]
 
 	

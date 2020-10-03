@@ -16,4 +16,4 @@ func get_item_states(level : int) -> Array:
 	
 func get_random_item_state_from_level(level : int) -> ItemState:
 	var states : Array = get_item_states(level)
-	return states[randi() % states.size()]
+	return states[Randomizer.get_random_integer(states.size())]

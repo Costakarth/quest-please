@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/audio/POL-crime-fighter-short.wav" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/lesion-x-a-new-way.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/audio/close_door_1.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/globals/SoundManager.gd" type="Script" id=3]
 [ext_resource path="res://assets/audio/open_door_3.wav" type="AudioStream" id=4]

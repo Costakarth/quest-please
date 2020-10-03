@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://assets/textures/QP_01_Background_1_bis_no_door.png" type="Texture" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_64.tres" type="DynamicFont" id=2]
@@ -38,6 +38,13 @@
 [ext_resource path="res://assets/fonts/ArchitectsDaughter-Regular.ttf" type="DynamicFontData" id=36]
 [ext_resource path="res://src/scripts/SheetPopup.gd" type="Script" id=37]
 [ext_resource path="res://src/scripts/Background.gd" type="Script" id=38]
+[ext_resource path="res://assets/textures/QP_09_Music.png" type="Texture" id=39]
+[ext_resource path="res://assets/textures/QP_09_Music_no.png" type="Texture" id=40]
+[ext_resource path="res://assets/textures/QP_10_Door.png" type="Texture" id=41]
+[ext_resource path="res://src/scenes/AudioButtonControl.gd" type="Script" id=42]
+[ext_resource path="res://assets/textures/QP_11_Thumbs_up.png" type="Texture" id=43]
+[ext_resource path="res://assets/textures/QP_11_Thumbs_down.png" type="Texture" id=44]
+[ext_resource path="res://assets/textures/QP_07_Button_round_yellow.png" type="Texture" id=45]
 
 [sub_resource type="DynamicFont" id=1]
 size = 30
@@ -170,7 +177,37 @@ shader = SubResource( 8 )
 shader_param/outLineSize = 0.01
 shader_param/alpha = 0.0
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=14]
+script/source = "extends Sprite
+
+var second_counter : float = 0
+var selected : bool = false
+
+func _process(delta : float) -> void:
+	
+	if selected:
+		second_counter += delta
+		var uniform_periodic = abs(cos(second_counter * 3))
+		
+		self.material.set_shader_param(\"alpha\", uniform_periodic)
+	else:
+		self.material.set_shader_param(\"alpha\", 0)
+
+
+func _on_ButtonControl_mouse_entered() -> void:
+	selected = true
+
+
+func _on_ButtonControl_mouse_exited() -> void:
+	selected = false
+"
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = SubResource( 8 )
+shader_param/outLineSize = 0.01
+shader_param/alpha = 0.0
+
+[sub_resource type="GDScript" id=16]
 script/source = "extends Sprite
 
 var second_counter : float = 0
@@ -591,23 +628,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="QP_10_Door" type="Sprite" parent="ButtonDoor/ButtonControl"]
+position = Vector2( 31.5969, 30.6578 )
+texture = ExtResource( 41 )
+
+[node name="AudioButton" type="Node2D" parent="."]
+position = Vector2( 166.339, 1009.52 )
+
+[node name="Sprite" type="Sprite" parent="AudioButton"]
+material = SubResource( 12 )
+texture = ExtResource( 45 )
+script = SubResource( 14 )
+
+[node name="AudioButtonControl" type="Control" parent="AudioButton"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 42 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioMuted" type="Sprite" parent="AudioButton/AudioButtonControl"]
+position = Vector2( 32, 32 )
+texture = ExtResource( 40 )
+
+[node name="AudioNotMuted" type="Sprite" parent="AudioButton/AudioButtonControl"]
+visible = false
+position = Vector2( 32, 32 )
+texture = ExtResource( 39 )
+
 [node name="AcceptButton" type="Node2D" parent="."]
 position = Vector2( 1297, 824 )
 
 [node name="Sprite" type="Sprite" parent="AcceptButton"]
-material = SubResource( 12 )
+material = SubResource( 15 )
 texture = ExtResource( 24 )
-script = SubResource( 13 )
+script = SubResource( 16 )
 
 [node name="AcceptButtonControl" type="Control" parent="AcceptButton"]
-margin_left = -32.0
+margin_left = -47.0
 margin_top = -32.0
-margin_right = 32.0
+margin_right = 49.0
 margin_bottom = 32.0
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="QP_11_Thumbs_up" type="Sprite" parent="AcceptButton/AcceptButtonControl"]
+position = Vector2( 50.5936, 32.4373 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 43 )
 
 [node name="RejectButton" type="Node2D" parent="."]
 position = Vector2( 1301, 900 )
@@ -618,14 +691,19 @@ texture = ExtResource( 23 )
 script = ExtResource( 20 )
 
 [node name="RejectButtonControl" type="Control" parent="RejectButton"]
-margin_left = -32.0
+margin_left = -50.0
 margin_top = -32.0
-margin_right = 32.0
+margin_right = 48.0
 margin_bottom = 32.0
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="QP_11_Thumbs_down" type="Sprite" parent="RejectButton/RejectButtonControl"]
+position = Vector2( 51.9413, 28.9781 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 44 )
 
 [node name="ErrorMonitor" type="Node2D" parent="."]
 position = Vector2( 1785, 664 )
@@ -710,23 +788,23 @@ texture = ExtResource( 26 )
 [connection signal="new_char_to_avoid" from="." to="CanvasLayer/SheetPopup" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_char_to_avoid" from="." to="Sheet/SheetSprite" method="_on_Main_new_char_to_avoid"]
 [connection signal="new_error" from="." to="ErrorMonitor" method="_on_Main_new_error"]
-[connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
 [connection signal="quest_close" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_close"]
-[connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
+[connection signal="quest_close" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_close"]
 [connection signal="quest_open" from="PopupManager" to="Scanner" method="_on_PopupManager_quest_open"]
+[connection signal="quest_open" from="PopupManager" to="CanvasLayer/MonitorPopup" method="_on_PopupManager_quest_open"]
 [connection signal="sheet_open" from="PopupManager" to="CanvasLayer/SheetPopup" method="_on_PopupManager_sheet_open"]
-[connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_close" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_close"]
-[connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_close" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_close"]
 [connection signal="tablet_open" from="PopupManager" to="PopupManager" method="_on_PopupManager_tablet_open"]
-[connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
+[connection signal="tablet_open" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open"]
+[connection signal="tablet_open" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open"]
 [connection signal="tablet_open_on_item" from="PopupManager" to="Scanner" method="_on_PopupManager_tablet_open_on_item"]
-[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
+[connection signal="tablet_open_on_item" from="PopupManager" to="CanvasLayer/TabletPopup" method="_on_PopupManager_tablet_open_on_item"]
 [connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="PopupManager" method="_on_MonitorPopup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/MonitorPopup" to="CanvasLayer/MonitorPopup" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="CanvasLayer/MonitorPopup/Background" to="CanvasLayer/MonitorPopup" method="_on_Background_clicked"]
-[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="CanvasLayer/TabletPopup" method="_on_Popup_popup_hide"]
 [connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="PopupManager" method="_on_TabletPopup_popup_hide"]
+[connection signal="popup_hide" from="CanvasLayer/TabletPopup" to="CanvasLayer/TabletPopup" method="_on_Popup_popup_hide"]
 [connection signal="clicked" from="CanvasLayer/TabletPopup/Background" to="CanvasLayer/TabletPopup" method="_on_Background_clicked"]
 [connection signal="clicked" from="Tablet/TabletButton" to="PopupManager" method="_on_TabletButton_clicked"]
 [connection signal="mouse_entered" from="Tablet/TabletButton" to="Tablet/TabletSprite" method="_on_TabletButton_mouse_entered"]
@@ -737,6 +815,9 @@ texture = ExtResource( 26 )
 [connection signal="clicked" from="ButtonDoor/ButtonControl" to="." method="_on_ButtonControl_clicked"]
 [connection signal="mouse_entered" from="ButtonDoor/ButtonControl" to="ButtonDoor/Sprite" method="_on_ButtonControl_mouse_entered"]
 [connection signal="mouse_exited" from="ButtonDoor/ButtonControl" to="ButtonDoor/Sprite" method="_on_ButtonControl_mouse_exited"]
+[connection signal="clicked" from="AudioButton/AudioButtonControl" to="." method="_on_ButtonControl_clicked"]
+[connection signal="mouse_entered" from="AudioButton/AudioButtonControl" to="AudioButton/Sprite" method="_on_ButtonControl_mouse_entered"]
+[connection signal="mouse_exited" from="AudioButton/AudioButtonControl" to="AudioButton/Sprite" method="_on_ButtonControl_mouse_exited"]
 [connection signal="clicked" from="AcceptButton/AcceptButtonControl" to="." method="_on_AcceptButtonControl_clicked"]
 [connection signal="mouse_entered" from="AcceptButton/AcceptButtonControl" to="AcceptButton/Sprite" method="_on_ButtonControl_mouse_entered"]
 [connection signal="mouse_exited" from="AcceptButton/AcceptButtonControl" to="AcceptButton/Sprite" method="_on_ButtonControl_mouse_exited"]

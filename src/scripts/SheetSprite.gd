@@ -15,6 +15,7 @@ func _process(delta : float) -> void:
 
 func _on_SheetButton_mouse_entered() -> void:
 	selected = true
+	self.material.set_shader_param("outLineSize", 0.01)
 
 
 func _on_SheetButton_mouse_exited() -> void:
@@ -23,3 +24,4 @@ func _on_SheetButton_mouse_exited() -> void:
 
 func _on_Main_new_char_to_avoid(_char) -> void:
 	selected = true
+	self.material.set_shader_param("outLineSize", 0.025)

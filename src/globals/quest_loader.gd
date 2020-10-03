@@ -7,7 +7,7 @@ var quest_path = "res://src/entities/quests/"
 	
 func choose_quest(level : int) -> Quest:
 	var quest_list = get_all_quests_until_level(level)
-	var rand_index : int = randi() % quest_list.size()
+	var rand_index : int = Randomizer.get_random_integer(quest_list.size())
 	
 	return quest_list[rand_index]
 	

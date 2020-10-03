@@ -44,8 +44,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Quest Please"
-run/main_scene="res://src/scenes/Intro.tscn"
+config/name="Quest, Please"
+run/main_scene="res://Title.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -54,6 +54,7 @@ QuestLoader="*res://src/globals/quest_loader.gd"
 CharacterLoader="*res://src/globals/character_loader.gd"
 ItemLoader="*res://src/globals/item_loader.gd"
 SoundManager="*res://src/globals/SoundManager.tscn"
+Randomizer="*res://src/scripts/Randomizer.gd"
 
 [display]
 

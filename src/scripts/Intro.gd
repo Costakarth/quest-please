@@ -5,7 +5,9 @@ var intro_text = [
 
 Your application request as \"quest giver\" of Cyberpunk 7720 has been accepted. 
 
-Congratulations.""",
+Congratulations.
+
+You should have already read the manual provided, but just to be sure I remind you how your work works.""",
 
 """You should have already read the manual provided, but just to be sure I remind you how your work works.""",
 

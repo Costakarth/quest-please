@@ -1,32 +1,63 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://crt_shader.shader" type="Shader" id=1]
 [ext_resource path="res://assets/fonts/dyn_font_60.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/textures/QP_04_Board_back.png" type="Texture" id=3]
-[ext_resource path="res://src/scripts/Intro.gd" type="Script" id=4]
 [ext_resource path="res://assets/textures/QP_04_Board_clean_outro.png" type="Texture" id=5]
 [ext_resource path="res://src/scripts/Enter.gd" type="Script" id=6]
 [ext_resource path="res://assets/fonts/dyn_font_40.tres" type="DynamicFont" id=7]
-[ext_resource path="res://src/scenes/Control.gd" type="Script" id=8]
+[ext_resource path="res://assets/textures/QP_07_Button_round_blue.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/monitor_screen.PNG" type="Texture" id=10]
+[ext_resource path="res://assets/textures/QP_02_Tablet_little.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/QP_08_Magnifier_border.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/QP_08_Magnifier_background.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/QP_I_Chip_01.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/QP_I_Chip_01_err_color_01.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/QP_10_Door.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/QP_11_Thumbs_up.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/QP_11_Thumbs_down.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/QP_07_Button_square_green.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/QP_07_Button_square_red.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/QP_03_Sheet_little.png" type="Texture" id=21]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="GDScript" id=3]
+script/source = "extends ColorRect
+
+func start_transition() -> void:
+	self.visible = true
+	$Tween.interpolate_property(self, \"modulate:a\", 
+	0, 1, 1.0, 
+	Tween.TRANS_LINEAR, Tween.EASE_IN)
+
+	$Tween.start()
+
+
+func _on_Tween_tween_all_completed() -> void:
+	get_tree().change_scene(\"res://src/scenes/Main.tscn\")
+
+
+func _on_Enter_next_scene() -> void:
+	start_transition()
+"
+
+[sub_resource type="Animation" id=1]
 resource_name = "flickering"
-length = 5.0
+length = 4.0
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Enter:visible")
+tracks/0/path = NodePath(".:percent_visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.3, 1.5, 1.7, 2.3, 2.5, 2.8, 3, 4.2, 4.4 ),
-"transitions": PoolRealArray( 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false, true, false, true, false, true, false, true ]
+"times": PoolRealArray( 0, 0.001, 0.5, 0.8, 1.3, 1.8, 2, 2.7, 3.2, 3.6, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -0.2, 1.0, 1.0, -0.2, 0.8, -0.2, -0.2, 0.8, 1.0, 0.2, 1.0 ]
 }
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 1 )
 shader_param/boost = 1.2
 shader_param/grille_opacity = 0.85
@@ -46,34 +77,36 @@ shader_param/aberration_speed = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
-margin_left = 588.0
-margin_top = 872.0
-margin_right = 1329.0
-margin_bottom = 952.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_default_cursor_shape = 2
-script = ExtResource( 8 )
+color = Color( 0, 0, 0, 1 )
+script = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Tween" type="Tween" parent="CanvasLayer/ColorRect"]
 
 [node name="Background" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0.823529 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -25.2269
-margin_top = -19.1362
-margin_right = -25.2269
-margin_bottom = -19.1362
 rect_scale = Vector2( 1.0031, 1.00155 )
 mouse_filter = 2
 color = Color( 0.0784314, 0.0784314, 0.0784314, 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -91,17 +124,403 @@ rect_scale = Vector2( 1.12961, 1.1449 )
 mouse_filter = 2
 texture = ExtResource( 3 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 
-[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect"]
-margin_left = 111.0
-margin_top = 304.0
-margin_right = 1223.0
-margin_bottom = 925.0
+[node name="Control1" type="Control" parent="BackMonitorLayer/TextureRect"]
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control1"]
+margin_left = 25.0
+margin_top = 12.0
+margin_right = 1137.0
+margin_bottom = 633.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
-text = "test"
+text = "Hey novice.
+
+Your application request as \"quest giver\" of Cyberpunk 7720 has been accepted. 
+Congratulations.
+
+You should have already read the manual provided, but just to be sure I remind you how your job works."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control2"]
+margin_left = 25.0
+margin_top = 12.0
+margin_right = 1137.0
+margin_bottom = 633.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "Your task is to make sure that the heroes deliver the right items for the completion of missions and that they do not try to deliver a faulty item.
+
+In the next screens I will show you what tools are available to you.
+
+Don't get distracted!"
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control3" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QP_07_Button_round_blue" type="Sprite" parent="BackMonitorLayer/TextureRect/Control3"]
+position = Vector2( 80.8943, 61.4569 )
+scale = Vector2( 1.39075, 1.39075 )
+texture = ExtResource( 9 )
+
+[node name="QP_10_Door" type="Sprite" parent="BackMonitorLayer/TextureRect/Control3/QP_07_Button_round_blue"]
+position = Vector2( -0.290985, -1.34101 )
+texture = ExtResource( 16 )
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control3"]
+margin_left = 158.0
+margin_top = 12.0
+margin_right = 1137.0
+margin_bottom = 128.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "This blue button is used to let the next hero in."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text2" type="Label" parent="BackMonitorLayer/TextureRect/Control3"]
+margin_left = 22.0
+margin_top = 145.0
+margin_right = 1132.0
+margin_bottom = 331.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "The hero will pass the items to be delivered to you on the counter."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QP_02_Tablet_little" type="Sprite" parent="BackMonitorLayer/TextureRect/Control3"]
+position = Vector2( 104.515, 455.378 )
+texture = ExtResource( 11 )
+
+[node name="Text3" type="Label" parent="BackMonitorLayer/TextureRect/Control3"]
+margin_left = 197.0
+margin_top = 327.367
+margin_right = 1127.0
+margin_bottom = 628.367
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "The tablet will show you a detailed description of possible items. 
+Pay close attention to the appearance of the items."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control4" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control4"]
+margin_left = 379.541
+margin_top = 15.4937
+margin_right = 1140.54
+margin_bottom = 204.494
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "This monitor will show the  active quests at the moment."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="monitor_screen" type="Sprite" parent="BackMonitorLayer/TextureRect/Control4"]
+position = Vector2( -232.77, 312.134 )
+scale = Vector2( 0.885261, 0.873439 )
+texture = ExtResource( 10 )
+
+[node name="QP_08_Magnifier_border" type="Sprite" parent="BackMonitorLayer/TextureRect/Control4"]
+position = Vector2( 1014.95, 419.449 )
+scale = Vector2( 0.458447, 0.458447 )
+texture = ExtResource( 12 )
+
+[node name="QP_08_Magnifier_background" type="Sprite" parent="BackMonitorLayer/TextureRect/Control4/QP_08_Magnifier_border"]
+position = Vector2( -1.75301, 3.63014 )
+scale = Vector2( 0.9798, 0.998042 )
+texture = ExtResource( 13 )
+
+[node name="Text2" type="Label" parent="BackMonitorLayer/TextureRect/Control4"]
+margin_left = 26.3264
+margin_top = 231.383
+margin_right = 899.326
+margin_bottom = 631.383
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "Take the items and use the magnifier to analyze it in detail. 
+Search very well for possible differences with the description you find in the tablet!"
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control5" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control5"]
+margin_left = 27.0
+margin_top = 15.0
+margin_right = 1141.0
+margin_bottom = 189.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "Just because it's your first assignment I'll show you an example."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text2" type="Label" parent="BackMonitorLayer/TextureRect/Control5"]
+margin_left = 364.466
+margin_top = 169.814
+margin_right = 1143.47
+margin_bottom = 396.814
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "This image is the same one you can find in the description inside the tablet."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="BackMonitorLayer/TextureRect/Control5"]
+margin_left = 362.092
+margin_top = 407.108
+margin_right = 1141.09
+margin_bottom = 634.108
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "This chip has different colors, so it is not the object we are looking for!"
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QP_I_Chip_01" type="Sprite" parent="BackMonitorLayer/TextureRect/Control5"]
+position = Vector2( 183.299, 288.35 )
+texture = ExtResource( 14 )
+
+[node name="QP_I_Chip_01_err_color_01" type="Sprite" parent="BackMonitorLayer/TextureRect/Control5"]
+position = Vector2( 187.766, 520.443 )
+texture = ExtResource( 15 )
+
+[node name="Control6" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control6"]
+margin_left = 27.0
+margin_top = 15.0
+margin_right = 1141.0
+margin_bottom = 228.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "When you have decided whether the items are correct or not you can press one of these two buttons."
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text3" type="Label" parent="BackMonitorLayer/TextureRect/Control6"]
+margin_left = 32.3055
+margin_top = 447.314
+margin_right = 1146.31
+margin_bottom = 660.314
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "Decide quickly! Heroes are not so patient.
+You have only 3 possibilities. 
+Try not to make mistakes!"
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text2" type="Label" parent="BackMonitorLayer/TextureRect/Control6"]
+margin_left = 156.326
+margin_top = 233.318
+margin_right = 1144.33
+margin_bottom = 466.318
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "green to accept and red to refuse delivery.
+You never would have said it, huh?"
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QP_07_Button_square_green" type="Sprite" parent="BackMonitorLayer/TextureRect/Control6"]
+position = Vector2( 81.0802, 292.382 )
+texture = ExtResource( 19 )
+
+[node name="QP_11_Thumbs_up" type="Sprite" parent="BackMonitorLayer/TextureRect/Control6/QP_07_Button_square_green"]
+position = Vector2( 3.15826, 0.997345 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 17 )
+
+[node name="QP_07_Button_square_red" type="Sprite" parent="BackMonitorLayer/TextureRect/Control6"]
+position = Vector2( 82.3721, 396.256 )
+texture = ExtResource( 20 )
+
+[node name="QP_11_Thumbs_down" type="Sprite" parent="BackMonitorLayer/TextureRect/Control6/QP_07_Button_square_red"]
+position = Vector2( 0.455994, -2.84784 )
+scale = Vector2( 1.75, 1.75 )
+texture = ExtResource( 18 )
+
+[node name="Control7" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QP_03_Sheet_little" type="Sprite" parent="BackMonitorLayer/TextureRect/Control7"]
+position = Vector2( 87.1728, 427.276 )
+texture = ExtResource( 21 )
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control7"]
+margin_left = 27.0
+margin_top = 15.8734
+margin_right = 1141.0
+margin_bottom = 543.873
+rect_pivot_offset = Vector2( 1584.2, -15 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "One last thing: from time to time some heroes will not be welcome and you will always have to reject their deliveries, even if the items are correct.
+
+"
+align = 3
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text2" type="Label" parent="BackMonitorLayer/TextureRect/Control7"]
+margin_left = 166.021
+margin_top = 253.606
+margin_right = 1137.02
+margin_bottom = 603.606
+rect_pivot_offset = Vector2( 1584.2, -15 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "
+You can find this information on the sheet of paper hanging near the door.
+Check it often.
+It likes to change!"
+autowrap = true
+clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control8" type="Control" parent="BackMonitorLayer/TextureRect"]
+visible = false
+margin_left = 86.0
+margin_top = 292.0
+margin_right = 1238.0
+margin_bottom = 928.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="BackMonitorLayer/TextureRect/Control8"]
+margin_left = 23.6577
+margin_top = 131.292
+margin_right = 1137.66
+margin_bottom = 659.292
+rect_pivot_offset = Vector2( 1584.2, -15 )
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 7 )
+text = "This is it.
+
+Don't get distracted, do your job and maybe we will pay you.
+
+Get to work!"
 align = 3
 autowrap = true
 clip_text = true
@@ -114,25 +533,28 @@ margin_left = 96.0
 margin_top = 946.808
 margin_right = 1237.0
 margin_bottom = 1021.81
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
-text = "ENTER"
+text = "<ENTER>"
 align = 1
 valign = 1
 autowrap = true
+percent_visible = 0.0678738
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BackMonitorLayer/TextureRect"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BackMonitorLayer/TextureRect/Enter"]
 autoplay = "flickering"
-anims/flickering = SubResource( 2 )
+anims/flickering = SubResource( 1 )
 
 [node name="ShaderLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="ShaderLayer"]
-material = SubResource( 1 )
+material = SubResource( 2 )
 anchor_left = 0.137687
 anchor_top = 0.867593
 anchor_right = 1.13006
@@ -144,6 +566,7 @@ margin_bottom = 496.48
 rect_rotation = 180.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
 
@@ -165,6 +588,8 @@ texture = ExtResource( 5 )
 expand = true
 stretch_mode = 5
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": true
 }
-[connection signal="clicked" from="Control" to="." method="_on_Control_clicked"]
+[connection signal="tween_all_completed" from="CanvasLayer/ColorRect/Tween" to="CanvasLayer/ColorRect" method="_on_Tween_tween_all_completed"]
+[connection signal="next_scene" from="BackMonitorLayer/TextureRect/Enter" to="CanvasLayer/ColorRect" method="_on_Enter_next_scene"]

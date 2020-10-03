@@ -63,7 +63,11 @@ func show_character() -> bool:
 
 func hideCharacter() -> bool:
 	if not self.visible:
-		return false;
+		return false
+	
+	$TextureProgress.visible = false	
+	$Timer.stop()
+	
 
 	yield(get_tree().create_timer(0.5), "timeout")
 	scale = Vector2(.65, .65)
@@ -108,7 +112,7 @@ func get_name() -> String:
 func pick_quest(level : int) -> Quest:
 	quest = QuestLoader.choose_quest(level)
 	
-	if randi() % 2:
+	if Randomizer.get_random_integer(2):
 		quest.has_error = true
 	
 	return quest
